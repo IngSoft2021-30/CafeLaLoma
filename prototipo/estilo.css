@@ -1,0 +1,186 @@
+﻿@import "compass/css3";
+
+// More practical CSS...
+// using mobile first method (IE8,7 requires respond.js polyfill https://github.com/scottjehl/Respond)
+
+$breakpoint-alpha: 480px; // adjust to your needs
+
+body{
+	padding-left: 0em;
+	 padding-right:	0em;
+	 padding-top:	0em;
+	 font-family: Georgia, "Times New Roman",
+		Times, serif;
+	 color:blue;
+}
+.header{
+	padding-left: 0em;
+	 padding-right:	0em;
+	 padding-top:	18em;
+	background-image: url("Logo C.png");
+	background-position:20% 0%;
+	background-repeat: no-repeat;
+}
+p {
+	font: oblique bold 120% cursive;
+
+margin-left: 300px;
+margin-right: 200px;
+margin-top: 10px;
+margin-bottom: 0px;
+}
+.bordered {
+    margin-left:300px;
+    margin-top:20px;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+.contacto{
+margin-left: 20%;
+margin-right: 200px;
+margin-top: -450px;
+margin-bottom: 0px;
+}
+.contacto label{
+	display: block;
+	font-weight: bold;
+}
+.contacto div{
+	margin-bottom: 15px;
+}
+.contacto input[type='text'], .contacto textarea{
+	padding: 7px 6px;
+	width: 294px;
+	border: 1px solid #CED5D7;
+	resize: none;
+	box-shadow: 0 0 0 3px #EEF5F7;
+	margin: 5px 0;
+}
+.contacto input[type='text']:focus, .contacto textarea:focus{
+	outline: none;
+	box-shadow: 0 0 0 3px #DDE9EC;
+}
+#navegador ul{
+ margin: 75px 10 0 0;
+ width: 100%;
+   list-style-type: none;
+   background-color: #8B0D32;
+   text-align: center;
+padding: 10px;
+}
+#navegador li{
+   display: inline;
+   text-align: center;
+   margin: 0px 10px 0px 0px;
+}
+#navegador li a{
+   padding: 10px 7px 10px 7px;
+   color: #ffffff;
+	 font: oblique bold 120% cursive;
+   background-color: #8B0D32;
+   border: none;
+   text-decoration: none;
+}
+#navegador li a:hover{
+   background-color: #7F0428;
+   color: #ffffff;
+}
+.slider{
+width: 100%;
+margin: auto;
+overflow: hidden;
+}
+.slider ul{
+display: flex;
+padding: 0;
+width: 400%;
+animation: cambio 10s infinite;
+}
+.slider li{
+width: 80%;
+list-style: none;
+}
+.slider img{
+margin-left: 26%;
+width: 45%;
+height:80%;
+float: left;
+}
+.redondo{
+  display: block;
+  width: 180px;
+  height: 50px;
+	font: oblique bold 120% cursive;
+	background-color: #8B0D32;
+	color: #ffffff;
+	display: inline-block;
+  border-radius: 10%;
+  border: 2px solid #000000;
+}
+.redondo:hover{
+	background-color: #7F0428;
+	color: #ffffff;
+}
+@keyframes cambio{
+0%{margin-left: 0;}
+20%{margin-left: 0;}
+25%{margin-left: -100%;}
+45%{margin-left: -100%;}
+50%{margin-left: -200%;}
+70%{margin-left: -200%;}
+75%{margin-left: -300%;}
+100%{margin-left: -300%;}
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+table {
+  border-collapse: separate;
+  background:#fff;
+  border-color: #04429b;
+  border-radius: 10px;
+  margin-left: 300px;
+  margin-top: 70px;
+}
+thead th {
+  font-family: 'Patua One', cursive;
+  font-size:16px;
+  font-weight:400;
+  color:ff;
+}
+
+tbody tr td {
+  font-family: 'Open Sans', sans-serif;
+  font-weight:400;
+  color:#5f6062;
+  font-size:13px;
+  padding:20px 20px 20px 20px;
+  border-bottom:1px solid #B1B2B3;
+  border-left:1px solid #B1B2B3;
+  border-right:1px solid #B1B2B3;
+  border-top:1px solid #B1B2B3;
+  border-radius: 10px;
+}
+tbody tr:last-child td {
+  border-bottom:none;
+  border-bottom:1px solid #B1B2B3;
+  border-left:1px solid #B1B2B3;
+  border-right:1px solid #B1B2B3;
+  border-top:1px solid #B1B2B3;
+  border-radius: 10px;
+}
+
+address{
+margin-top: 10px;
+padding-top: 1em;
+font: oblique bold 120% cursive;
+background-color: #8B0D32;
+color: #ffffff;
+border-top: thin dotted #000000}

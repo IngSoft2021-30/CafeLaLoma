@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+	<title>Cafe La Loma.</title>
+	<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="header">
+<body><a href="https://www.instagram.com/telewarrior/"><IMG SRC="social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1200px; margin-right: 0px;"></a>&ensp;<a href="https://www.facebook.com/telewarrior/"><IMG SRC="social2.jpg" WIDTH=40 HEIGHT=35 ></a>
+</div>
+<div id="navegador">
+<ul>
+<li><a href="index.html">INICIO</a></li>
+<li><a href="empresa.html">EMPRESA</a></li>
+<li><a href="quienesSomos.html">QUINES SOMOS</a></li>
+<li><a href="productos.html">PRODUCTOS</a></li>
+<li><a href="contacto.html">CONTACTENOS</a></li>
+</ul>
+</div>
+
+<p>
+
+	<font color="8B0D32" SIZE=7><b><p style="margin-top: 3%; margin-left: 20%; margin-right: 20%;">Contactanos:</b></font>
+
+	<style>
+	#map {
+	        height: 450px;
+	        width: 450px;
+		margin-left: 750px;
+		margin-top: 5%;
+	       }
+	    </style>
+	    <div id="map"></div>
+	    <script>
+	      function initMap() {
+	        var uluru = {lat: 4.628650483568186, lng: -74.06464539671967};
+	        var map = new google.maps.Map(document.getElementById('map'), {
+	          zoom: 16,
+	          center: uluru
+	        });
+	        var marker = new google.maps.Marker({
+	          position: uluru,
+	          map: map
+	        });
+	      }
+	    </script>
+	    <script async defer
+	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeslJgm35K9fS9pvvGjUesurC7H6Daxuw&callback=initMap">
+	    </script>
+
+		<form class='contacto' action="send_form_email.php">
+			<div><label>Nombre:</label><input type='text' name="nombre" value=''></div>
+			<div><label>E-mail:</label><input type='text' name="correo" value=''></div>
+			<div><label>Asunto:</label><input type='text' name="asunto" value=''></div>
+			<div><label>Mensaje:</label><textarea rows='6' name="mensaje"></textarea></div>
+			<div class="button">
+	        	<button type="submit"><a href="contac.html">Enviar</a></button>
+	    		</div>
+		</form>
+
+<br><br>
+
+<address>
+CAFE LA LOMA TIENDA VIRUAL.<br>
+XXXXX-Colombia<br>
+XXXXXXXX - 3XX-XXX XXXX</address>
+</body>
+</html>
