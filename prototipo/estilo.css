@@ -64,6 +64,9 @@ margin-bottom: 0px;
 	outline: none;
 	box-shadow: 0 0 0 3px #DDE9EC;
 }
+.resizedTextbox {width: 200px; height: 25px; padding: 2px ;
+font-size:18px;}
+
 #navegador ul{
  margin: 75px 10 0 0;
  width: 100%;
