@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -25,7 +26,7 @@ public class Usuario implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1436080237433101228L;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
@@ -33,11 +34,13 @@ public class Usuario implements Serializable{
 	
 	@Column
 	@NotBlank
-	@Size(min=5,max=8,message="No se cumple las reglas del tamano")
+	@Size(min=3,max=8,message="No se cumple las reglas del tamano")
 	private String nombre;
 	@Column
 	@NotBlank
 	private String apellido;
+	@Column
+	private String empresa;
 	@Column
 	@NotBlank
 	private String email;
@@ -62,7 +65,7 @@ public class Usuario implements Serializable{
 	
 	@Transient
 	private String confirmPassword;
-	
+
 	@Size(min=1)
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles",
