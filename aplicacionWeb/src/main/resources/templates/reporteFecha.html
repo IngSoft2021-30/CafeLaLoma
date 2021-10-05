@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Cafe La Loma.</title>
-	<link rel="stylesheet" href="estilo.css">
+	<link rel="stylesheet" href="static/estilo.css" th:href="@{estilo.css}">
 </head>
 <body>
 <div class="header">
@@ -24,8 +24,15 @@
 		    	<TD COLSPAN=4>Reporte de ventas</TD>
 		</TR>
 		<TR>
-			<TD>Fecha de venta</TD> <TD>Orden de venta</TD>
+			<TD>Fecha de venta</TD> <TD>Número factura</TD>
 			<TD>Valor total</TD> <TD>Estado de pedido</TD>
+		</TR>
+		
+		<TR th:each="factura: ${facturaL}">
+			<td th:text="${factura.fecha}"></td>
+			<td th:text="${factura.id}"></td>
+			<td th:text="${factura.venta_id.total}"></td>
+			<td th:text="${factura.estado_envio}"></td>
 		</TR>
 		<TR>
 			<TD>DD/MM/AAAA</TD> <TD>#xxxx</TD>
@@ -45,7 +52,7 @@
 		</TR>
 	</TABLE><br><br>
 	<center>
-		<a href="perfilAdmin.html"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		<a href="#" th:href="@{/perfilAdm}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 		REGRESAR
 		</button></a>
 	<button class="redondo" style="font-size:18px; width: 170px; height: 40px;">

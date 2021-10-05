@@ -78,6 +78,33 @@ public class Usuario implements Serializable{
 		this.id = id;
 	}
 
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Usuario(Long id,
+			@NotBlank @Size(min = 3, max = 8, message = "No se cumple las reglas del tamano") String nombre,
+			@NotBlank String apellido, String empresa, @NotBlank String email, @NotBlank String tipoID,
+			@NotBlank String identificacion, @NotBlank String departamento, @NotBlank String municipio,
+			@NotBlank String direccion, @NotBlank String password, String confirmPassword,
+			@Size(min = 1) Set<Role> roles) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.empresa = empresa;
+		this.email = email;
+		this.tipoID = tipoID;
+		this.identificacion = identificacion;
+		this.departamento = departamento;
+		this.municipio = municipio;
+		this.direccion = direccion;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+		this.roles = roles;
+	}
+
 	public Long getId() {
 		return id;
 	}
