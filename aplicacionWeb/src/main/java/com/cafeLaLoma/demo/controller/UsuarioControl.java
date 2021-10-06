@@ -4,14 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import com.cafeLaLoma.demo.service.FacturaService;
+import com.cafeLaLoma.demo.service.ProdutoVentaServ;
 
 @Controller
 public class UsuarioControl {
 	
 	@Autowired
 	FacturaService facturaService;
+	
+	@Autowired
+	ProdutoVentaServ productoVentaService;
 	
 	@GetMapping("/")
 	public String index() {
@@ -28,7 +31,8 @@ public class UsuarioControl {
 		return "reporteFecha";
 	}
 	@GetMapping("/reporteP")
-	public String reporteP() {
+	public String reporteP(Model model) {
+		model.addAttribute("ventasL",productoVentaService.getAllProductosventa());
 		return "reporteMasVend";
 	}
 	@GetMapping("/perfilAdm")
@@ -47,4 +51,14 @@ public class UsuarioControl {
 	public String productos() {
 		return "productos";
 	}
+	/*@GetMapping("/exportar")
+	public ResponseEntity<Resource> getFile() {
+	    String filename = "tutorials.csv";
+	    InputStreamResource file = new InputStreamResource(fileService.load());
+
+	    return ResponseEntity.ok()
+	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+	        .contentType(MediaType.parseMediaType("application/csv"))
+	        .body(file);
+	  }*/
 }
