@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Cafe La Loma.</title>
@@ -28,15 +28,15 @@ Actualizar
 </button><br>
 Si desea cambiar la contraseña diligencie los siguientes datos:<br>
 Contraseña anterior: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Contraseña" name="empresa"><br>
-Contraseña nueva: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Contraseña" name="empresa"><br>
-Confirme la contraseña: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Confirme Contraseña" name="empresa"><br>
+Contraseña nueva: <input type="password" class="resizedTextbox" size="20" maxlength="30" name="empresa"><br>
+Confirme la contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" name="empresa"><br>
 <button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 Cambiar
 </button><br>
 <br><br>
 <br>
 <center>
-<a href="perfilUsuario.html"><button class="redondo">
+<a href="#" th:href="@{/usuario}"><button class="redondo">
 Regresar
 </button></a>
 </center>
