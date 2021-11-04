@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Cafe La Loma.</title>
@@ -6,16 +6,15 @@
 </head>
 <body>
 <div class="header">
-<body>
-<br><br><br>
+<body><a href="https://www.instagram.com"><IMG SRC="social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1200px; margin-right: 0px;"></a>&ensp;<a href="https://www.facebook.com"><IMG SRC="social2.jpg" WIDTH=40 HEIGHT=35 ></a>
 </div>
 <div id="navegador">
 <ul>
-<li><a href="index.html">INICIO</a></li>
-<li><a href="empresa.html">EMPRESA</a></li>
-<li><a href="quienesSomos.html">QUINES SOMOS</a></li>
-<li><a href="productos.html">PRODUCTOS</a></li>
-<li><a href="contacto.html">CONTACTENOS</a></li>
+<li><a href="#" th:href="@{/index}">INICIO</a></li>
+<li><a href="#" th:href="@{/empresa}">EMPRESA</a></li>
+<li><a href="#" th:href="@{/quienS}">QUINES SOMOS</a></li>
+<li><a href="#" th:href="@{/productos}">PRODUCTOS</a></li>
+<li><a href="#" th:href="@{/contactenos}">CONTACTENOS</a></li>
 </ul>
 </div>
 
@@ -36,10 +35,10 @@ Tipo de identificación: <select name="select" style="height:26px; font-size:16p
   <option value="value3">C.E</option>
 </select><br>
 Número de dentificación: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Num identificación" name="numID"><br>
-Contraseña: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Contraseña" name="empresa"><br>
+Contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" name="empresa"><br>
 <br><br>
 <center>
-<a href="perfilUsuario.html"><button class="redondo">
+<a href="#" th:href="@{/usuario}"><button class="redondo">
 Ingresar
 </button></a>
 </center>
