@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.cafeLaLoma.demo.entity.Factura;
 import com.cafeLaLoma.demo.service.FacturaService;
 import com.cafeLaLoma.demo.service.ProdutoVentaServ;
-
+import com.cafeLaLoma.demo.service.UsuarioService;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -26,6 +26,9 @@ public class UsuarioControl {
 	
 	@Autowired
 	ProdutoVentaServ productoVentaService;
+	
+	@Autowired
+	UsuarioService usuarioService;
 	
 	/*@GetMapping("/")
 	public String index() {
