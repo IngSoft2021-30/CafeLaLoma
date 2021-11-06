@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>Cafe La Loma.</title>
+	 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Cafe La Loma.</title>
 	
 	 <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -10,57 +11,75 @@
 </head>
 <body>
 <div class="header">
-<body><a href="https://www.instagram.com"><IMG SRC="social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1200px; margin-right: 0px;"></a>&ensp;<a href="https://www.facebook.com"><IMG SRC="social2.jpg" WIDTH=40 HEIGHT=35 ></a>
-</div>
-<div id="navegador">
-<ul>
-<li><a href="#" th:href="@{/index}">INICIO</a></li>
-<li><a href="#" th:href="@{/empresa}">EMPRESA</a></li>
-<li><a href="#" th:href="@{/quienS}">QUINES SOMOS</a></li>
-<li><a href="#" th:href="@{/productos}">PRODUCTOS</a></li>
-<li><a href="#" th:href="@{/contactenos}">CONTACTENOS</a></li>
-</ul>
-</div>
+<body>
+	<a href="https://www.instagram.com"><IMG SRC="social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1200px; margin-right: 0px;"></a>&ensp;<a href="https://www.facebook.com"><IMG SRC="social2.jpg" WIDTH=40 HEIGHT=35 ></a>
+	</div>
+	
+	<div id="navegador">
+	<ul>
+	<li><a href="#" th:href="@{/index}">INICIO</a></li>
+	<li><a href="#" th:href="@{/empresa}">EMPRESA</a></li>
+	<li><a href="#" th:href="@{/quienS}">QUINES SOMOS</a></li>
+	<li><a href="#" th:href="@{/productos}">PRODUCTOS</a></li>
+	<li><a href="#" th:href="@{/contactenos}">CONTACTENOS</a></li>
+	</ul>
+	</div>
 
-<p>
-<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">REGISTRO</b></font>
-<br>
-<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
-	Selecione una opción, recuerde que los distribuidores deben registrarse con el NIT y solo podrán comprar cantidades mayores a X porproducto.<br>
-	<input type="radio" id="perNat" name="drone" value="perNat"
-	         checked>
-	  <label for="perNat">Persona natural</label><br>
-		<input type="radio" id="distri" name="drone" value="distri"
-		         checked>
-		  <label for="distri">Distribuidor</label><br>
-Nombres: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Nombres" name="nombres"><br>
-Apellidos: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Apellidos" name="apellidos"><br>
-Tipo de identificación: <select name="select" style="height:26px; font-size:16px;">
-  <option value="ps">C.C.</option>
-  <option value="CC" selected>NIT</option>
-  <option value="value3">C.E</option>
-</select><br>
-Número de dentificación: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Num identificación" name="numID"><br>
+	<p>
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">REGISTRO</b></font>
+	<br>
+	<form class="form" role="form" autocomplete="off" th:object="${userForm}" th:action="@{/registrarse}" method="post">
+		<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
+		Selecione una opción, recuerde que los distribuidores deben registrarse con el NIT y solo podrán comprar cantidades mayores a X porproducto.<br>
+		<input type="radio" id="perNat" name="drone" value="perNat" checked>
+	  	<label for="perNat">Persona natural</label><br>
+		<input type="radio" id="distri" name="drone" value="distri" />
+		<label for="distri">Distribuidor</label><br>
+		
+		<label for="nombre">Nombre:</label> <input type="text" class="form-control" th:field="${userForm.nombre}"/>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name Error</p>
 
-Razón social: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Razón social" name="empresa"><br>
-Departamento: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Departamento" name="empresa"><br>
-Municipio/ciudad: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Municipio" name="empresa"><br>
-Dirección: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Dirección" name="empresa"><br>
-Ingrese una contraseña para completar el registro<br>
+		<p><label>Apellidos: <input type="text" class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.apellido}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Name Error</p></p>
+		
+		<p>Tipo de identificación: <select name="select" style="height:26px; font-size:16px;" th:field="${userForm.tipoID}">
+		  <option value="CC">C.C.</option>
+		  <option value="NIT" selected>NIT</option>
+		  <option value="CE">C.E</option>
+		</select><br></p>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('tipoID')}" th:errors="*{tipoID}">Name Error</p>
+		
+		<p>Número de dentificación::</label> <input type="text" class="resizedTextbox" size="20" maxlength="30" th:field="${userForm.identificacion}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('identificacion')}" th:errors="*{identificacion}">Name Error</p></p>
+		
+		<p>Razón social:<input type="text" class="resizedTextbox" size="20" maxlength="30" th:field="${userForm.empresa}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('empresa')}" th:errors="*{empresa}">Name Error</p></p>
+		
+		<p>Departamento: <input type="text" class="resizedTextbox" size="20" maxlength="30" th:field="${userForm.departamento}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('departamento')}" th:errors="*{departamento}">Name Error</p></p>
+		
+		<p>Municipio/ciudad: <input type="text" class="resizedTextbox" size="20" maxlength="30" th:field="${userForm.municipio}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('municipio')}" th:errors="*{municipio}">Name Error</p></p>
+		
+		<p>Dirección: <input type="text" class="resizedTextbox" size="20" maxlength="30" th:field="${userForm.direccion}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Name Error</p></p>
+		
+		<p>Ingrese una contraseña para completar el registro<br>
+		
+		Contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" th:field="${userForm.password}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p></p>
+		
+		<p>Confirme la contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" th:field="${userForm.confirmPassword}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">Name Error</p></p>
+		
+		<p><input type="submit" class="redondo" style="font-size:18px; width: 170px; height: 40px;" value="Registrarse"></p>
+	</form>
+	</p>
 
-Contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" name="empresa"><br>
-
-Confirme la contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" name="empresa"><br>
-<br><br>
-<br>
-<center>
-<button class="redondo">
-Registrarse
-</button>
-</center>
-<address>
-CAFE LA LOMA TIENDA VIRUAL.<br>
-XXXXX-Colombia<br>
-XXXXXXXX - 3XX-XXX XXXX</address>
+	<address>
+	CAFE LA LOMA TIENDA VIRUAL.<br>
+	XXXXX-Colombia<br>
+	XXXXXXXX - 3XX-XXX XXXX
+	</address>
 </body>
 </html>

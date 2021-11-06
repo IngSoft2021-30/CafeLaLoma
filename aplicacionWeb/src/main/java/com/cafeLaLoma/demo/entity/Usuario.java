@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -33,8 +32,8 @@ public class Usuario implements Serializable{
 	private Long id;
 	
 	@Column
-	@NotBlank
-	@Size(min=3,max=8,message="No se cumple las reglas del tamano")
+	@NotBlank(message="Ingrese información valida")
+	@Size(min=3,message="No se cumple las reglas del tamaño")
 	private String nombre;
 	@Column
 	@NotBlank
@@ -64,6 +63,7 @@ public class Usuario implements Serializable{
 	private String password;
 	
 	@Transient
+	@NotBlank
 	private String confirmPassword;
 
 	@Size(min=1)
@@ -127,6 +127,14 @@ public class Usuario implements Serializable{
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+	
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 
 	public String getEmail() {
@@ -201,13 +209,16 @@ public class Usuario implements Serializable{
 		this.roles = roles;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", tipoID="
-				+ tipoID + ", identificacion=" + identificacion + ", departamento=" + departamento + ", municipio="
-				+ municipio + ", direccion=" + direccion + ", password=" + password + ", confirmPassword="
-				+ confirmPassword + ", roles=" + roles + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", empresa=" + empresa
+				+ ", email=" + email + ", tipoID=" + tipoID + ", identificacion=" + identificacion + ", departamento="
+				+ departamento + ", municipio=" + municipio + ", direccion=" + direccion + ", password=" + password
+				+ ", confirmPassword=" + confirmPassword + ", roles=" + roles + "]";
 	}
+
+	
 
 	@Override
 	public int hashCode() {
@@ -218,6 +229,7 @@ public class Usuario implements Serializable{
 		result = prime * result + ((departamento == null) ? 0 : departamento.hashCode());
 		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((identificacion == null) ? 0 : identificacion.hashCode());
 		result = prime * result + ((municipio == null) ? 0 : municipio.hashCode());
@@ -261,6 +273,11 @@ public class Usuario implements Serializable{
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
+			return false;
+		if (empresa == null) {
+			if (other.empresa != null)
+				return false;
+		} else if (!empresa.equals(other.empresa))
 			return false;
 		if (id == null) {
 			if (other.id != null)
