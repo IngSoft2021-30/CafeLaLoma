@@ -46,22 +46,24 @@ public class ControGeneral {
 	public String crearUsuario(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {
 			model.addAttribute("userForm", user);	
-			System.out.print(user.getNombre());
+			System.out.print("-----------------------------"+result.getFieldError());
 		}else {
-			System.out.print("No hay error");
-			return "perfilUsuario";
+			try {
+				usuarioService.crearUsuario(user);
+			} catch (Exception e) {
+				model.addAttribute("formErrorMessage", e.getMessage());
+				model.addAttribute("userForm", user);
+				model.addAttribute("userList", usuarioService.getAllUsuario());
+				model.addAttribute("roles",roleRepository.findAll());
+				System.out.print("______________________"+e.getMessage());
+			}
 		}		
 		model.addAttribute("userList", usuarioService.getAllUsuario());
 		model.addAttribute("roles",roleRepository.findAll());
 		System.out.print(user.getTipoID());
-		return "registro";
+		return "ingreso";
 	}
 	
-	/*@PostMapping("/habilitar")
-	public String habiliita() {
-		System.out.print("entra");
-		return "registro";
-	}*/
 	@GetMapping("/empresa")
 	public String empresa() {
 		return "empresa";

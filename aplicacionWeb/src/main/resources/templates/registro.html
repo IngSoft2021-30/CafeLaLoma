@@ -42,6 +42,9 @@
 		<p><label>Apellidos: <input type="text" class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.apellido}"><br>
 		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Name Error</p></p>
 		
+		<p><label>Email: <input type="text" class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.email}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</p></p>
+		
 		<p>Tipo de identificación: <select name="select" style="height:26px; font-size:16px;" th:field="${userForm.tipoID}">
 		  <option value="CC">C.C.</option>
 		  <option value="NIT" selected>NIT</option>
@@ -73,6 +76,8 @@
 		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">Name Error</p></p>
 		
 		<p><input type="submit" class="redondo" style="font-size:18px; width: 170px; height: 40px;" value="Registrarse"></p>
+		
+		<p style="font-size:120%; color:#8B0D32;"  th:if="${formErrorMessage}" th:text="${formErrorMessage}">Name Error</p>
 	</form>
 	</p>
 
