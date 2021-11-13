@@ -27,6 +27,10 @@ public class UsuarioServImpl implements UsuarioService{
 	}
 	
 	private boolean checkPasswordMatch(Usuario user) throws Exception {
+		if (user.getConfirmPassword() == null || user.getConfirmPassword().isEmpty()) {
+			throw new Exception("Confirmar password es obligatorio");
+		}
+		
 		if( !user.getPassword().equals(user.getConfirmPassword())) {
 			throw new Exception("password y confirmacion de password no coinciden");
 		}
