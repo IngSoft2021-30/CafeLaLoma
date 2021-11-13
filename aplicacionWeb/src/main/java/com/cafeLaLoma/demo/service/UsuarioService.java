@@ -3,6 +3,7 @@ package com.cafeLaLoma.demo.service;
 import com.cafeLaLoma.demo.entity.Usuario;
 
 import dto.Autenticacion;
+import dto.CambiarPassword;
 
 public interface UsuarioService {
 	public Iterable<Usuario> getAllUsuario();
@@ -16,4 +17,7 @@ public interface UsuarioService {
 	public Usuario getUserByIdentificacion(String identificacion) throws Exception;
 
 	public Usuario autenticarUsuario(Autenticacion aut,Usuario usuario) throws Exception;
+
+	public Usuario carbiarPassword(CambiarPassword aut,Usuario usuario) throws Exception;
+		
 }

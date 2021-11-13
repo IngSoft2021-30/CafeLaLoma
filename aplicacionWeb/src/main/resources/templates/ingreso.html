@@ -22,19 +22,22 @@
 	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">INGRESO</b></font>
 	<br>
 	<form class="form" role="form" autocomplete="off" th:object="${autenticarForm}" th:action="@{/ingresar}" method="post">
-	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
-
+		<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
 	
-	<p>Número de dentificación:<input type="text" class="resizedTextbox" size="20" maxlength="30" th:field="${autenticarForm.identificacion}"><br>
-	<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('identificacion')}" th:errors="*{identificacion}">Name Error</p>
 		
-	<p>Contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" th:field="${autenticarForm.password}"><br>
-	<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p></p>
+		<p>Número de dentificación:<input type="text" class="resizedTextbox" size="20" maxlength="30" th:field="${autenticarForm.identificacion}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('identificacion')}" th:errors="*{identificacion}">Name Error</p>
+			
+		<p>Contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" th:field="${autenticarForm.password}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p></p>
+			
+		<center>
+		<a href="#" th:href="@{/usuario/}+${autenticarForm.identificacion}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+			Actualizar
 		
-	<center>
-	<a href="#" th:href="@{/usuario/}+${autenticarForm.identificacion}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-		Actualizar
-	</button></a><br>
+		</button></a><br>
+		<p style="font-size:120%; color:#8B0D32;"  th:if="${formErrorMessage}" th:text="${formErrorMessage}">Name Error</p>
+	
 	</form>
 	</center>
 	<address>

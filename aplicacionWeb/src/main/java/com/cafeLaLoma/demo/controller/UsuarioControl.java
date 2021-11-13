@@ -18,6 +18,8 @@ import com.cafeLaLoma.demo.service.FacturaService;
 import com.cafeLaLoma.demo.service.ProdutoVentaServ;
 import com.cafeLaLoma.demo.service.UsuarioService;
 
+import dto.CambiarPassword;
+
 @Controller
 public class UsuarioControl {
 	
@@ -50,6 +52,11 @@ public class UsuarioControl {
 		model.addAttribute("userForm", userActu);
 		model.addAttribute("userList", usuarioService.getAllUsuario());
 		model.addAttribute("roles",roleRepository.findAll());
+		CambiarPassword cont = new CambiarPassword(userActu.getId());
+		cont.setPasswordActual(userActu.getPassword());
+		cont.setPasswordNuevo("val");
+		cont.setPasswordConfirm("val1");
+		model.addAttribute("userFormC", cont);
 		return "actualizarPerfil";
 	}
 	
@@ -73,7 +80,31 @@ public class UsuarioControl {
 		model.addAttribute("userList", usuarioService.getAllUsuario());
 		model.addAttribute("roles",roleRepository.findAll());
 		System.out.print(user.getTipoID());
-		return "actualizarPerfil"+user.getId();
+		return "actualizarPerfil";
+	}
+	
+	@PostMapping("/actualizarPerfilC")
+	public String crearUsuarioC(@Valid @ModelAttribute("userFormC") CambiarPassword user, BindingResult result, ModelMap model) {
+		if(result.hasErrors()) {
+			model.addAttribute("userFormC", user);	
+			System.out.print(user.getId()+"-----------------------------"+result.getFieldError());
+		}else {
+			try {
+				Usuario aux=usuarioService.getUserById(user.getId());
+				usuarioService.carbiarPassword(user,aux);	
+				usuarioService.updateUser(aux);
+				return "perfilUsuario";
+			} catch (Exception e) {
+				model.addAttribute("formErrorMessage", e.getMessage());
+				model.addAttribute("userFormC", user);
+				model.addAttribute("roles",roleRepository.findAll());
+				System.out.print("______________________"+e.getMessage());
+			}
+		}		
+		model.addAttribute("userList", usuarioService.getAllUsuario());
+		model.addAttribute("roles",roleRepository.findAll());
+		System.out.print(user.getPasswordActual());
+		return "actualizarPerfil";
 	}
 	
 	@GetMapping("/HistoCompras")

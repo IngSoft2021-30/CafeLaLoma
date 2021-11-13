@@ -9,6 +9,7 @@ import com.cafeLaLoma.demo.entity.Usuario;
 import com.cafeLaLoma.demo.repository.UsuarioRepositorio;
 
 import dto.Autenticacion;
+import dto.CambiarPassword;
 
 @Service
 public class UsuarioServImpl implements UsuarioService{
@@ -81,6 +82,27 @@ public class UsuarioServImpl implements UsuarioService{
 			throw new Exception("password incorrecto");
 		}
 		return user;
+	}
+
+	@Override
+	public Usuario carbiarPassword(CambiarPassword aut, Usuario usuario) throws Exception {
+		if (aut.getPasswordActual() == null || aut.getPasswordActual().isEmpty()) {
+			throw new Exception("password actual es obligatorio");
+		}
+		
+		if (aut.getPasswordNuevo() == null || aut.getPasswordNuevo().isEmpty()) {
+			throw new Exception("password Nuevo vacio");
+		}
+		
+		if (aut.getPasswordConfirm() == null || aut.getPasswordConfirm().isEmpty()) {
+			throw new Exception("Confirmar password es obligatorio");
+		}
+		
+		if( !aut.getPasswordActual().equals(usuario.getConfirmPassword())) {
+			throw new Exception("password actual no coincide");
+		}
+		
+		return usuario;
 	}
 
 }
