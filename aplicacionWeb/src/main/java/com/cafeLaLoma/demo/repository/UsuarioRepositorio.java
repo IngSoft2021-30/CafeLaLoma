@@ -10,7 +10,7 @@ import com.cafeLaLoma.demo.entity.Usuario;
 @Repository
 public interface UsuarioRepositorio extends CrudRepository<Usuario,Long> {
 
-	public Optional<Usuario> findById(String id);
+	public Optional<Usuario> findById(Long id);
 	
 	public Optional<Usuario> findByIdentificacion(String identificacion);
 }

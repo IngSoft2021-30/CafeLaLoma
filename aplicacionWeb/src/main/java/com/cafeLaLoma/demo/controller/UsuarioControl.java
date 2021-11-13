@@ -31,23 +31,15 @@ public class UsuarioControl {
 	
 	@Autowired
 	UsuarioService usuarioService;
-	
-	/*@GetMapping("/")
-	public String index() {
-		return "index";
-	}
-	
-	@GetMapping("/formulario")
-	public String registro() {
-		return "registro";
-	}*/
+
 	@GetMapping("/ingresoadmin")
 	public String ingresoAdm() {
+		
 		return "ingresoAdmin";
 	}
 	@GetMapping("/usuario/{id}")
-	public String perfilUser(Model model, @PathVariable(name ="id")Long id)throws Exception {
-		Usuario user= usuarioService.getUserById(id);
+	public String perfilUser(Model model, @PathVariable(name ="id")String id)throws Exception {
+		Usuario user= usuarioService.getUserByIdentificacion(id);
 		model.addAttribute("userForm", user);
 		return "perfilUsuario";
 	}

@@ -15,6 +15,8 @@ import com.cafeLaLoma.demo.entity.Usuario;
 import com.cafeLaLoma.demo.repository.RoleRepository;
 import com.cafeLaLoma.demo.service.UsuarioService;
 
+import dto.Autenticacion;
+
 @Controller
 public class ControGeneral {
 
@@ -30,31 +32,30 @@ public class ControGeneral {
 	}
 	
 	@GetMapping("/ingresar")
-	public String ingreso() {
+	public String ingreso(Model model) {
+		model.addAttribute("autenticarForm", new Autenticacion());
 		return "ingreso";
 	}
 	
 	@PostMapping("/ingresar")
-	public String autenticar(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model) {
+	public String autenticar(@Valid @ModelAttribute("autenticarForm") Autenticacion user, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {
-			model.addAttribute("userForm", user);	
+			model.addAttribute("autenticarForm", user);	
 			System.out.print("-----------------------------"+result.getFieldError());
 		}else {
 			try {
-				usuarioService.crearUsuario(user);
-				return "ingreso";
+				Usuario validar = usuarioService.getUserByIdentificacion(user.getIdentificacion());
+				usuarioService.autenticarUsuario(user,validar);
+				model.addAttribute("userForm", validar);	
+				return "perfilUsuario";
 			} catch (Exception e) {
 				model.addAttribute("formErrorMessage", e.getMessage());
-				model.addAttribute("userForm", user);
-				model.addAttribute("userList", usuarioService.getAllUsuario());
-				model.addAttribute("roles",roleRepository.findAll());
+				model.addAttribute("autenticarForm", user);
 				System.out.print("______________________"+e.getMessage());
 			}
 		}		
-		model.addAttribute("userList", usuarioService.getAllUsuario());
-		model.addAttribute("roles",roleRepository.findAll());
-		System.out.print(user.getTipoID());
-		return "usuario";
+		System.out.print(user.getIdentificacion());
+		return "ingreso";
 	}
 	
 	@GetMapping("/registrarse")

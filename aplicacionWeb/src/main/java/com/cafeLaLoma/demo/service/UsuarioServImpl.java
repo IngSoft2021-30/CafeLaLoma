@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.cafeLaLoma.demo.entity.Usuario;
 import com.cafeLaLoma.demo.repository.UsuarioRepositorio;
 
+import dto.Autenticacion;
+
 @Service
 public class UsuarioServImpl implements UsuarioService{
 	
@@ -72,6 +74,13 @@ public class UsuarioServImpl implements UsuarioService{
 	public Usuario getUserByIdentificacion(String identificacion) throws Exception {
 		return repository.findByIdentificacion(identificacion).orElseThrow(() -> new Exception("El usuario no existe."));
 		
+	}
+
+	public Usuario autenticarUsuario(Autenticacion aut, Usuario user) throws Exception {
+		if( !user.getPassword().equals(aut.getPassword())) {
+			throw new Exception("password incorrecto");
+		}
+		return user;
 	}
 
 }
