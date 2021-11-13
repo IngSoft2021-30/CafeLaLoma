@@ -18,6 +18,7 @@ import com.cafeLaLoma.demo.service.FacturaService;
 import com.cafeLaLoma.demo.service.ProdutoVentaServ;
 import com.cafeLaLoma.demo.service.UsuarioService;
 
+import dto.Autenticacion;
 import dto.CambiarPassword;
 
 @Controller
@@ -35,10 +36,32 @@ public class UsuarioControl {
 	UsuarioService usuarioService;
 
 	@GetMapping("/ingresoadmin")
-	public String ingresoAdm() {
-		
+	public String ingresoAdm(Model model) {
+		model.addAttribute("adminForm", new Autenticacion());
 		return "ingresoAdmin";
 	}
+	
+	@PostMapping("/ingresoadmin")
+	public String autenticarAdmin(@Valid @ModelAttribute("adminForm") Autenticacion admin, BindingResult result, ModelMap model) {
+		if(result.hasErrors()) {
+			model.addAttribute("autenticarForm", admin);	
+			System.out.print("-----------------------------"+result.getFieldError());
+		}else {
+			try {
+				Usuario validar = usuarioService.getUserByIdentificacion(admin.getIdentificacion());
+				usuarioService.autenticarUsuario(admin,validar);
+				model.addAttribute("adminForm", validar);	
+				return "perfilAdmin";
+			} catch (Exception e) {
+				model.addAttribute("formErrorMessage", e.getMessage());
+				model.addAttribute("autenticarForm", admin);
+				System.out.print("______________________"+e.getMessage());
+			}
+		}		
+		System.out.print(admin.getIdentificacion());
+		return "ingresoAdmin";
+	}
+	
 	@GetMapping("/usuario/{id}")
 	public String perfilUser(Model model, @PathVariable(name ="id")String id)throws Exception {
 		Usuario user= usuarioService.getUserByIdentificacion(id);
@@ -64,7 +87,7 @@ public class UsuarioControl {
 	public String crearUsuario(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {
 			model.addAttribute("userForm", user);	
-			System.out.print(user.getNombre()+"-----------------------------"+result.getFieldError());
+			System.out.print("-----------------------------"+result.getFieldError());
 		}else {
 			try {
 				usuarioService.updateUser(user);
@@ -77,8 +100,6 @@ public class UsuarioControl {
 				System.out.print("______________________"+e.getMessage());
 			}
 		}		
-		model.addAttribute("userList", usuarioService.getAllUsuario());
-		model.addAttribute("roles",roleRepository.findAll());
 		System.out.print(user.getTipoID());
 		return "actualizarPerfil";
 	}
@@ -111,8 +132,10 @@ public class UsuarioControl {
 	public String infoPedidos() {
 		return "historialCompras";
 	}
-	@GetMapping("/admin")
-	public String perfilAdmin() {
+	@GetMapping("/admin/{id}")
+	public String perfilAdmin(Model model, @PathVariable(name ="id")String id)throws Exception {
+		Usuario admin= usuarioService.getUserByIdentificacion(id);
+		model.addAttribute("adminForm", admin);
 		return "perfilAdmin";
 	}
 	@GetMapping("/reporteF")

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Cafe La Loma.</title>
-	<link rel="stylesheet" href="estilo.css">
+	<link type="text/css" rel="stylesheet" href="/estilo.css">
 </head>
 <body>
 <div class="header">
@@ -15,9 +15,11 @@
 </div>
 
 <p>
-<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">BIENVENIDO USUARIO XXXXX</b></font>
-<br>
-<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
+
+<p form th:object="${adminForm}" th:action="@{/admin}"></p>
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px; ">Bienvenido administrador <text th:text="${adminForm.nombre}"/>  <text th:text="${adminForm.apellido}"/></b></font>
+	<br>
+	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
 	Selecione una opción para su reporte.<br>
 	REPORTE POR FECHA:<br>
 	<a href="#" th:href="@{/reporteF}"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">
@@ -33,8 +35,9 @@
 	GESTIONAR
 	</button></a><br><br>
 	VER INVENTARIO<br>
-	<a href="#" th:href="@{/inventario}"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">
-	VER
+	<a href="#" th:href="@{/inventario}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		VER
+		</button>
 	</button></a><br>
 <br>
 <center>
