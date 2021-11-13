@@ -10,4 +10,6 @@ public interface UsuarioService {
 	public Usuario getUserById(Long id) throws Exception;
 
 	public Usuario updateUser(Usuario user) throws Exception;
+	
+	public Usuario getUserByIdentificacion(String identificacion) throws Exception;
 }

@@ -29,6 +29,34 @@ public class ControGeneral {
 		return "index";
 	}
 	
+	@GetMapping("/ingresar")
+	public String ingreso() {
+		return "ingreso";
+	}
+	
+	@PostMapping("/ingresar")
+	public String autenticar(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model) {
+		if(result.hasErrors()) {
+			model.addAttribute("userForm", user);	
+			System.out.print("-----------------------------"+result.getFieldError());
+		}else {
+			try {
+				usuarioService.crearUsuario(user);
+				return "ingreso";
+			} catch (Exception e) {
+				model.addAttribute("formErrorMessage", e.getMessage());
+				model.addAttribute("userForm", user);
+				model.addAttribute("userList", usuarioService.getAllUsuario());
+				model.addAttribute("roles",roleRepository.findAll());
+				System.out.print("______________________"+e.getMessage());
+			}
+		}		
+		model.addAttribute("userList", usuarioService.getAllUsuario());
+		model.addAttribute("roles",roleRepository.findAll());
+		System.out.print(user.getTipoID());
+		return "usuario";
+	}
+	
 	@GetMapping("/registrarse")
 	public String registro(Model model) {
 		model.addAttribute("userForm", new Usuario());
@@ -36,12 +64,7 @@ public class ControGeneral {
 		model.addAttribute("roles",roleRepository.findAll());
 		return "registro";
 	}
-	
-	@GetMapping("/ingresar")
-	public String ingreso() {
-		return "ingreso";
-	}
-	
+		
 	@PostMapping("/registrarse")
 	public String crearUsuario(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {

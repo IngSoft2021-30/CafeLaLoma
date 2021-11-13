@@ -68,4 +68,10 @@ public class UsuarioServImpl implements UsuarioService{
 		to.setDireccion(from.getDireccion());
 	}
 
+	@Override
+	public Usuario getUserByIdentificacion(String identificacion) throws Exception {
+		return repository.findByIdentificacion(identificacion).orElseThrow(() -> new Exception("El usuario no existe."));
+		
+	}
+
 }
