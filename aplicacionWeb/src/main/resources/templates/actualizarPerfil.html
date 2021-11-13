@@ -1,48 +1,85 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>Cafe La Loma.</title>
-	<link rel="stylesheet" href="estilo.css">
+	 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Cafe La Loma.</title>
+	
+	 <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<link type="text/css" rel="stylesheet" href="/estilo.css">
 </head>
-<body>
-<div class="header">
-<body><br><br><br>
-</div>
-<div id="navegador">
-<ul>
-<li></li>
-</ul>
-</div>
-
-<p>
-<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">ACTUALIZAR DATOS</b></font>
-<br>
-<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
+	<body>
+	<div class="header">
+	<br><br><br>
+	</div>
+	<div id="navegador">
+	<ul>
+	<li></li>
+	</ul>
+	</div>
+	
+	<form class="form" role="form" autocomplete="off" th:object="${userForm}" th:action="@{/actualizarPerfil}" method="post">
+		
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">ACTUALIZAR DATOS</b></font>
+	<br>
+	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
 	Actualización de datos para persona natural/empresa:<br>
-
-Departamento: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Departamento" name="empresa"><br>
-Municipio/ciudad: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Municipio" name="empresa"><br>
-Dirección: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Dirección" name="empresa"><br>
-<button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-Actualizar
-</button><br>
-Si desea cambiar la contraseña diligencie los siguientes datos:<br>
-Contraseña anterior: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Contraseña" name="empresa"><br>
-Contraseña nueva: <input type="password" class="resizedTextbox" size="20" maxlength="30" name="empresa"><br>
-Confirme la contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" name="empresa"><br>
-<button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-Cambiar
-</button><br>
-<br><br>
-<br>
-<center>
-<a href="#" th:href="@{/usuario}"><button class="redondo">
-Regresar
-</button></a>
-</center>
-<address>
-CAFE LA LOMA TIENDA VIRUAL.<br>
-XXXXX-Colombia<br>
-XXXXXXXX - 3XX-XXX XXXX</address>
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.nombre}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.apellido}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.email}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.id}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.identificacion}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.password}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.tipoID}" >
+	Departamento: <input type="text" class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.departamento}"><br>
+	<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('departamento')}" th:errors="*{departamento}">Name Error</p>
+	
+	Municipio/ciudad: <input type="text" class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.municipio}"><br>
+	<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('municipio')}" th:errors="*{municipio}">Name Error</p>
+	
+	Dirección: <input type="text" class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.direccion}"><br>
+	<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccions}">Name Error</p>
+	
+	<p><input type="submit" class="redondo" style="font-size:18px; width: 170px; height: 40px;" value="Actualizar"></p>
+	<p style="font-size:120%; color:#8B0D32;"  th:if="${formErrorMessage}" th:text="${formErrorMessage}">Name Error</p>
+	</form>
+	
+	<form class="form" role="form" autocomplete="off" th:object="${userFormC}" th:action="@{/actualizarPerfilC}" method="post">
+	<p>Si desea cambiar la contraseña diligencie los siguientes datos:<br>
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userFormC.id}" >
+	
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.nombre}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.apellido}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.email}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.id}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.identificacion}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.password}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.tipoID}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.departamento}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.municipio}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.direccion}" >
+	Contraseña anterior: <input type="password" class="resizedTextbox" size="20" maxlength="30"  th:field="${userFormC.passwordActual}"><br>
+	<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('passwordActual')}" th:errors="*{passwordActual}">Name Error</p>
+	
+	Contraseña nueva: <input type="password" class="resizedTextbox" size="20" maxlength="30"  th:field="${userFormC.passwordNuevo}"><br>
+	<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('passwordNuevo')}" th:errors="*{passwordNuevo}">Name Error</p>
+	
+	Confirme la contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30"  th:field="${userFormC.passwordConfirm}"><br>
+	<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Name Error</p>
+	
+	<p><input type="submit" class="redondo" style="font-size:18px; width: 170px; height: 40px;" value="Cambiar"></p>
+	<p style="font-size:120%; color:#8B0D32;"  th:if="${formErrorMessage}" th:text="${formErrorMessage}">Name Error</p>
+	<br><br>
+	<br></form>
+	<center>
+	<a href="#" th:href="@{/usuario}"><button class="redondo">
+	Regresar
+	</button></a>
+	</center>
+	<address>
+	CAFE LA LOMA TIENDA VIRUAL.<br>
+	XXXXX-Colombia<br>
+	XXXXXXXX - 3XX-XXX XXXX</address>
 </body>
 </html>

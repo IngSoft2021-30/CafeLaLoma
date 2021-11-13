@@ -15,6 +15,8 @@ import com.cafeLaLoma.demo.entity.Usuario;
 import com.cafeLaLoma.demo.repository.RoleRepository;
 import com.cafeLaLoma.demo.service.UsuarioService;
 
+import dto.Autenticacion;
+
 @Controller
 public class ControGeneral {
 
@@ -29,6 +31,33 @@ public class ControGeneral {
 		return "index";
 	}
 	
+	@GetMapping("/ingresar")
+	public String ingreso(Model model) {
+		model.addAttribute("autenticarForm", new Autenticacion());
+		return "ingreso";
+	}
+	
+	@PostMapping("/ingresar")
+	public String autenticar(@Valid @ModelAttribute("autenticarForm") Autenticacion user, BindingResult result, ModelMap model) {
+		if(result.hasErrors()) {
+			model.addAttribute("autenticarForm", user);	
+			System.out.print("-----------------------------"+result.getFieldError());
+		}else {
+			try {
+				Usuario validar = usuarioService.getUserByIdentificacion(user.getIdentificacion());
+				usuarioService.autenticarUsuario(user,validar);
+				model.addAttribute("userForm", validar);	
+				return "perfilUsuario";
+			} catch (Exception e) {
+				model.addAttribute("formErrorMessage", e.getMessage());
+				model.addAttribute("autenticarForm", user);
+				System.out.print("______________________"+e.getMessage());
+			}
+		}		
+		System.out.print(user.getIdentificacion());
+		return "ingreso";
+	}
+	
 	@GetMapping("/registrarse")
 	public String registro(Model model) {
 		model.addAttribute("userForm", new Usuario());
@@ -36,12 +65,7 @@ public class ControGeneral {
 		model.addAttribute("roles",roleRepository.findAll());
 		return "registro";
 	}
-	
-	@GetMapping("/ingresar")
-	public String ingreso() {
-		return "ingreso";
-	}
-	
+		
 	@PostMapping("/registrarse")
 	public String crearUsuario(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {
@@ -50,6 +74,7 @@ public class ControGeneral {
 		}else {
 			try {
 				usuarioService.crearUsuario(user);
+				return "ingreso";
 			} catch (Exception e) {
 				model.addAttribute("formErrorMessage", e.getMessage());
 				model.addAttribute("userForm", user);
@@ -61,7 +86,7 @@ public class ControGeneral {
 		model.addAttribute("userList", usuarioService.getAllUsuario());
 		model.addAttribute("roles",roleRepository.findAll());
 		System.out.print(user.getTipoID());
-		return "ingreso";
+		return "registro";
 	}
 	
 	@GetMapping("/empresa")

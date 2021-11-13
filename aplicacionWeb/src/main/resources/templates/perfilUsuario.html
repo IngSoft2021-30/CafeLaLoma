@@ -1,44 +1,50 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>Cafe La Loma.</title>
-	<link rel="stylesheet" href="estilo.css">
+	 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Cafe La Loma.</title>
+	
+	 <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<link type="text/css" rel="stylesheet" href="/estilo.css">
 </head>
 <body>
-<div class="header">
-<body><br><br><br>
-</div>
-<div id="navegador">
-<ul>
-<li></li>
-</ul>
-</div>
+	<div class="header">
 
-<p>
-<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">BIENVENIDO XXXXX</b></font>
-<br>
-<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
-	Selecione una opción.<br>
+	<br><br><br>
+	</div>
+	<div id="navegador">
+	<ul>
+	<li></li>
+	</ul>
+	</div>
 
-	Datos personales<br>
-	<a href="#" th:href="@{/actualizarPerfil}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-	Actualizar
-	</button></a><br>
-	Información de tus pedidos<br>
-	<a href="#" th:href="@{/HistoCompras}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-	Ver
-	</button></a><br>
-	Carrito de compras<br>
-	<a href="#" th:href="@{/carrito}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-	Ver
-	</button></a><br>
-<br>
-<center>
-
-</center>
-<address>
-CAFE LA LOMA TIENDA VIRUAL.<br>
-XXXXX-Colombia<br>
-XXXXXXXX - 3XX-XXX XXXX</address>
+	<p form th:object="${userForm}" th:action="@{/usuario}"></p>
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px; ">Bienvenido <text th:text="${userForm.nombre}"/>  <text th:text="${userForm.tipoID}"/></b></font>
+	<br>
+	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
+		Selecione una opción.<br>
+	
+		Datos personales<br>
+		<a href="#" th:href="@{/actualizarPerfil/}+${userForm.id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		Actualizar
+		</button></a><br>
+		Información de tus pedidos<br>
+		<a href="#" th:href="@{/HistoCompras}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		Ver
+		</button></a><br>
+		Carrito de compras<br>
+		<a href="#" th:href="@{/carrito}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		Ver
+		</button></a><br>
+	<br>
+	<center>
+	
+	</center>
+	<address>
+	CAFE LA LOMA TIENDA VIRUAL.<br>
+	XXXXX-Colombia<br>
+	XXXXXXXX - 3XX-XXX XXXX</address>
 </body>
 </html>

@@ -7,44 +7,42 @@
 <body>
 <div class="header">
 <body><a href="https://www.instagram.com"><IMG SRC="social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1200px; margin-right: 0px;"></a>&ensp;<a href="https://www.facebook.com"><IMG SRC="social2.jpg" WIDTH=40 HEIGHT=35 ></a>
-</div>
-<div id="navegador">
-<ul>
-<li><a href="#" th:href="@{/index}">INICIO</a></li>
-<li><a href="#" th:href="@{/empresa}">EMPRESA</a></li>
-<li><a href="#" th:href="@{/quienS}">QUINES SOMOS</a></li>
-<li><a href="#" th:href="@{/productos}">PRODUCTOS</a></li>
-<li><a href="#" th:href="@{/contactenos}">CONTACTENOS</a></li>
-</ul>
-</div>
-
-<p>
-<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">INGRESO</b></font>
-<br>
-<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
-	Selecione una opción.<br>
-	<input type="radio" id="perNat" name="drone" value="perNat"
-	         checked>
-	  <label for="perNat">Persona natural</label>
-		<input type="radio" id="distri" name="drone" value="distri"
-		         checked>
-		  <label for="distri">Distribuidor</label><br>
-Tipo de identificación: <select name="select" style="height:26px; font-size:16px;">
-  <option value="ps">C.C.</option>
-  <option value="CC" selected>NIT</option>
-  <option value="value3">C.E</option>
-</select><br>
-Número de dentificación: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Num identificación" name="numID"><br>
-Contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" name="empresa"><br>
-<br><br>
-<center>
-<a href="#" th:href="@{/usuario}"><button class="redondo">
-Ingresar
-</button></a>
-</center>
-<address>
-CAFE LA LOMA TIENDA VIRUAL.<br>
-XXXXX-Colombia<br>
-XXXXXXXX - 3XX-XXX XXXX</address>
+	</div>
+	<div id="navegador">
+	<ul>
+	<li><a href="#" th:href="@{/index}">INICIO</a></li>
+	<li><a href="#" th:href="@{/empresa}">EMPRESA</a></li>
+	<li><a href="#" th:href="@{/quienS}">QUINES SOMOS</a></li>
+	<li><a href="#" th:href="@{/productos}">PRODUCTOS</a></li>
+	<li><a href="#" th:href="@{/contactenos}">CONTACTENOS</a></li>
+	</ul>
+	</div>
+	
+	<p>
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">INGRESO</b></font>
+	<br>
+	<form class="form" role="form" autocomplete="off" th:object="${autenticarForm}" th:action="@{/ingresar}" method="post">
+		<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
+	
+		
+		<p>Número de dentificación:<input type="text" class="resizedTextbox" size="20" maxlength="30" th:field="${autenticarForm.identificacion}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('identificacion')}" th:errors="*{identificacion}">Name Error</p>
+			
+		<p>Contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" th:field="${autenticarForm.password}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p></p>
+			
+		<center>
+		<a href="#" th:href="@{/usuario/}+${autenticarForm.identificacion}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+			Actualizar
+		
+		</button></a><br>
+		<p style="font-size:120%; color:#8B0D32;"  th:if="${formErrorMessage}" th:text="${formErrorMessage}">Name Error</p>
+	
+	</form>
+	</center>
+	<address>
+	CAFE LA LOMA TIENDA VIRUAL.<br>
+	XXXXX-Colombia<br>
+	XXXXXXXX - 3XX-XXX XXXX</address>
 </body>
 </html>
