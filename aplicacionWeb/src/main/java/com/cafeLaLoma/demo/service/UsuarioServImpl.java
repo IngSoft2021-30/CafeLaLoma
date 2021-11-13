@@ -41,4 +41,27 @@ public class UsuarioServImpl implements UsuarioService{
 		return user;
 	}
 
+	@Override
+	public Usuario getUserById(Long id) throws Exception {
+		return repository.findById(id).orElseThrow(() -> new Exception("El usuario para editar no existe."));
+	}
+
+	@Override
+	public Usuario updateUser(Usuario fromUser) throws Exception {
+		Usuario toUser = getUserById(fromUser.getId());
+		mapUser(fromUser, toUser);
+		return repository.save(toUser);
+	}
+	
+	/**
+	 * Map everythin but the password.
+	 * @param from
+	 * @param to
+	 */
+	protected void mapUser(Usuario from,Usuario to) {
+		to.setDepartamento(from.getDepartamento());
+		to.setMunicipio(from.getMunicipio());
+		to.setDireccion(from.getDireccion());
+	}
+
 }

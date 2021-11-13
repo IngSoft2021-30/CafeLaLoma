@@ -50,6 +50,7 @@ public class ControGeneral {
 		}else {
 			try {
 				usuarioService.crearUsuario(user);
+				return "ingreso";
 			} catch (Exception e) {
 				model.addAttribute("formErrorMessage", e.getMessage());
 				model.addAttribute("userForm", user);
@@ -61,7 +62,7 @@ public class ControGeneral {
 		model.addAttribute("userList", usuarioService.getAllUsuario());
 		model.addAttribute("roles",roleRepository.findAll());
 		System.out.print(user.getTipoID());
-		return "ingreso";
+		return "registro";
 	}
 	
 	@GetMapping("/empresa")
