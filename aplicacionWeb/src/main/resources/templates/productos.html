@@ -21,28 +21,25 @@
 <p>
 <font color="8B0D32" SIZE=7><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">Productos</b></font>
 <br>
-<TABLE BORDER>
+<TABLE BORDER th:each="producto: ${productos}">
 	<TR>
-		<TD ROWSPAN=2><img src="bolsa2.jpg"></TD>
-	    	<TD COLSPAN=2>Titulo del producto</TD> 
+			<td ROWSPAN=2><img th:src="${producto.imagen}" alt="" width="200px" height="200px"></td>
+			<td COLSPAN=3 th:text="${producto.nombre}"></td>
 	</TR>
 	<TR>
-		<TD>Descripcion del producto</TD> <TD>Elegir cantidad</TD> 
+			<td COLSPAN=2 th:text="${producto.descripcion}"></td>
 	</TR>
+	<TR>
+			<td >Agregar</td>
+			<td th:text="@{Precio: $}+${producto.precio}"></td>
+			<td th:text="@{Presentación: }+${producto.tamanio}"></td>
+	</TR>
+	
 </TABLE>
 
-<TABLE BORDER>
-		<TR>
-		<TD ROWSPAN=2><img src="bolsa2.jpg"></TD>
-	    	<TD COLSPAN=2>Titulo del producto</TD> 
-	</TR>
-	<TR>
-		<TD>Descripcion del producto</TD> <TD>Elegir cantidad</TD> 
-	</TR>
-</TABLE>
 <address>
 CAFE LA LOMA TIENDA VIRUAL.<br>
-XXXXX-Colombia<br>
-XXXXXXXX - 3XX-XXX XXXX</address>
+Nariño-Colombia<br>
+318-770 6752</address>
 </body>
 </html>

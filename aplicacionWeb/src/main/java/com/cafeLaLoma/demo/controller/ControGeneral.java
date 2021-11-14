@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cafeLaLoma.demo.entity.Usuario;
 import com.cafeLaLoma.demo.repository.RoleRepository;
+import com.cafeLaLoma.demo.service.ProductoService;
 import com.cafeLaLoma.demo.service.UsuarioService;
 
 import dto.Autenticacion;
@@ -25,6 +26,9 @@ public class ControGeneral {
 
 	@Autowired
 	RoleRepository roleRepository;
+
+	@Autowired
+	ProductoService productoService;
 	
 	@GetMapping({"/","/index"})
 	public String index() {
@@ -98,7 +102,8 @@ public class ControGeneral {
 		return "quienesSomos";
 	}
 	@GetMapping("/productos")
-	public String productos() {
+	public String productos(Model model) {
+		model.addAttribute("productos",productoService.getAllProductos());
 		return "productos";
 	}
 	@GetMapping("/contactenos")

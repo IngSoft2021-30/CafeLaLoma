@@ -141,44 +141,45 @@ float: left;
 }
 table {
   border-collapse: separate;
-  background:#fff;
-  border-color: #04429b;
+  background:#8B0D32;
+  border-color: #8B0D32;
   border-radius: 10px;
   margin-left: 300px;
   margin-top: 70px;
 }
 thead th {
-  font-family: 'Patua One', cursive;
+  font-family: Georgia, "Times New Roman";
   font-size:16px;
   font-weight:400;
   color:ff;
 }
 
 tbody tr td {
-  font-family: 'Open Sans', sans-serif;
+  font:oblique bold 120% cursive;
   font-weight:400;
-  color:#5f6062;
-  font-size:13px;
+  color:#000000;
+  font-size:16px;
   padding:20px 20px 20px 20px;
-  border-bottom:1px solid #B1B2B3;
-  border-left:1px solid #B1B2B3;
-  border-right:1px solid #B1B2B3;
-  border-top:1px solid #B1B2B3;
+  border-bottom:2px solid #8B0D32;
+  border-left:1px solid #8B0D32;
+  border-right:1px solid #8B0D32;
+  border-top:1px solid #8B0D32;
   border-radius: 10px;
+  background:#ffff;
 }
 tbody tr:last-child td {
   border-bottom:none;
-  border-bottom:1px solid #B1B2B3;
-  border-left:1px solid #B1B2B3;
-  border-right:1px solid #B1B2B3;
-  border-top:1px solid #B1B2B3;
+  border-bottom:2px solid #8B0D32;
+  border-left:1px solid #8B0D32;
+  border-right:1px solid #8B0D32;
+  border-top:1px solid #8B0D32;
   border-radius: 10px;
 }
 
 address{
 margin-top: 10px;
 padding-top: 1em;
-font: oblique bold 120% cursive;
+font: oblique bold 90% cursive;
 background-color: #8B0D32;
 color: #ffffff;
 border-top: thin dotted #000000}
