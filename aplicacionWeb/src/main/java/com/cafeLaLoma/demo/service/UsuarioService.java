@@ -16,8 +16,10 @@ public interface UsuarioService {
 	
 	public Usuario getUserByIdentificacion(String identificacion) throws Exception;
 
-	public Usuario autenticarUsuario(Autenticacion aut,Usuario usuario) throws Exception;
+	public Usuario autenticarCliente(Autenticacion aut,Usuario usuario) throws Exception;
 
+	public Usuario autenticarAdmin(Autenticacion aut,Usuario usuario) throws Exception;
+	
 	public Usuario carbiarPassword(CambiarPassword aut,Usuario usuario) throws Exception;
 		
 }

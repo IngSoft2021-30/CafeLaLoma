@@ -77,13 +77,26 @@ public class UsuarioServImpl implements UsuarioService{
 		
 	}
 
-	public Usuario autenticarUsuario(Autenticacion aut, Usuario user) throws Exception {
+	public Usuario autenticarCliente(Autenticacion aut, Usuario user) throws Exception {
 		if( !user.getPassword().equals(aut.getPassword())) {
 			throw new Exception("password incorrecto");
 		}
+		if( user.getRoles().toString().contains("id=1")) {
+			throw new Exception("Permisos denegados");
+		}
 		return user;
 	}
-
+	
+	public Usuario autenticarAdmin(Autenticacion aut, Usuario user) throws Exception {
+		if( !user.getPassword().equals(aut.getPassword())) {
+			throw new Exception("password incorrecto");
+		}
+		if( !user.getRoles().toString().contains("id=1")) {
+			throw new Exception("Permisos denegados");
+		}
+		return user;
+	}
+	
 	@Override
 	public Usuario carbiarPassword(CambiarPassword aut, Usuario usuario) throws Exception {
 		if (aut.getPasswordActual() == null || aut.getPasswordActual().isEmpty()) {

@@ -30,7 +30,10 @@
 			<td COLSPAN=2 th:text="${producto.descripcion}"></td>
 	</TR>
 	<TR>
-			<td >Agregar</td>
+			<td >
+			<a href="#" th:href="@{/carrito}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		Agregar
+		</button></a></td>
 			<td th:text="@{Precio: $}+${producto.precio}"></td>
 			<td th:text="@{Presentación: }+${producto.tamanio}"></td>
 	</TR>

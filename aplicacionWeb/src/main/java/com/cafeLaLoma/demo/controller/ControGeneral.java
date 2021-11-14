@@ -49,7 +49,7 @@ public class ControGeneral {
 		}else {
 			try {
 				Usuario validar = usuarioService.getUserByIdentificacion(user.getIdentificacion());
-				usuarioService.autenticarUsuario(user,validar);
+				usuarioService.autenticarCliente(user,validar);
 				model.addAttribute("userForm", validar);	
 				return "perfilUsuario";
 			} catch (Exception e) {

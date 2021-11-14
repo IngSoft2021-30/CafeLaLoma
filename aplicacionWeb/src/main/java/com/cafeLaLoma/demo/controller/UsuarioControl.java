@@ -49,7 +49,7 @@ public class UsuarioControl {
 		}else {
 			try {
 				Usuario validar = usuarioService.getUserByIdentificacion(admin.getIdentificacion());
-				usuarioService.autenticarUsuario(admin,validar);
+				usuarioService.autenticarAdmin(admin,validar);
 				model.addAttribute("adminForm", validar);	
 				return "perfilAdmin";
 			} catch (Exception e) {
@@ -66,6 +66,7 @@ public class UsuarioControl {
 	public String perfilUser(Model model, @PathVariable(name ="id")String id)throws Exception {
 		Usuario user= usuarioService.getUserByIdentificacion(id);
 		model.addAttribute("userForm", user);
+		System.out.print("---------"+user.getRoles().toString().contains("id=2"));
 		return "perfilUsuario";
 	}
 
