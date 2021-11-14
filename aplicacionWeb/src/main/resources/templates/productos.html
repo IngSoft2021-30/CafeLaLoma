@@ -31,9 +31,13 @@
 	</TR>
 	<TR>
 			<td >
-			<a href="#" th:href="@{/carrito}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-		Agregar
-		</button></a></td>
+			<span th:if="${producto.disponible == 0}">AGOTADO</span>
+			<span th:if="${producto.disponible != 0}">
+			<a href="#" th:href="@{/carrito}">
+			<button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+			Agregar
+			</button></a></span></td>
+			
 			<td th:text="@{Precio: $}+${producto.precio}"></td>
 			<td th:text="@{Presentación: }+${producto.tamanio}"></td>
 	</TR>
