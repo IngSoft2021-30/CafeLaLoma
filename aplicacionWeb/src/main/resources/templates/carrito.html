@@ -7,63 +7,55 @@
 <body>
 <div class="header">
 <body><a href="#" th:if="${id == null}" th:href="@{/index/0}">
-<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
-<a href="#" th:if="${id > 0}" th:href="@{/carrito/}+${id}">
-<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
-<a href="https://www.instagram.com"><IMG SRC="/social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 10px; margin-right: 0px;"></a>
-&ensp;<a href="https://www.facebook.com"><IMG SRC="/social2.jpg" WIDTH=40 HEIGHT=35 ></a>
-</div>
-<div id="navegador">
-<ul>
-<li><a href="#" th:if="${id != 0}" th:href="@{/usuario/}+${id}">PERFIL</a></li>
-<li><a href="#" th:if="${id == null}" th:href="@{/index}">INICIO</a></li>
-<li><a href="#" th:if="${id != null}" th:href="@{/index/}+${id}">INICIO</a></li>
-<li><a href="#" th:if="${id == null}" th:href="@{/empresa}">EMPRESA</a></li>
-<li><a href="#" th:if="${id != null}" th:href="@{/empresa/}+${id}">EMPRESA</a></li>
-<li><a href="#" th:if="${id == null}" th:href="@{/quienS}">QUINES SOMOS</a></li>
-<li><a href="#" th:if="${id != null}" th:href="@{/quienS/}+${id}">QUINES SOMOS</a></li>
-<li><a href="#" th:if="${id == null}" th:href="@{/productos}">PRODUCTOS</a></li>
-<li><a href="#" th:if="${id != null}" th:href="@{/productos/}+${id}">PRODUCTOS</a></li>
-<li><a href="#" th:if="${id == null}" th:href="@{/contactenos}">CONTACTENOS</a></li>
-<li><a href="#" th:if="${id != null}" th:href="@{/contactenos/}+${id}">CONTACTENOS</a></li>
-</ul>
-</div>
-
-<p>
-<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">CARRITO DE COMPRAS</b></font>
-<br>
-<br>
+	<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+	<a href="#" th:if="${id > 0}" th:href="@{/carrito/}+${id}">
+	<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+	<a href="https://www.instagram.com"><IMG SRC="/social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 10px; margin-right: 0px;"></a>
+	&ensp;<a href="https://www.facebook.com"><IMG SRC="/social2.jpg" WIDTH=40 HEIGHT=35 ></a>
+	</div>
+	<div id="navegador">
+		<ul>
+		<li><a href="#" th:if="${id != 0}" th:href="@{/usuario/}+${id}">PERFIL</a></li>
+		<li><a href="#" th:if="${id == null}" th:href="@{/index}">INICIO</a></li>
+		<li><a href="#" th:if="${id != null}" th:href="@{/index/}+${id}">INICIO</a></li>
+		<li><a href="#" th:if="${id == null}" th:href="@{/empresa}">EMPRESA</a></li>
+		<li><a href="#" th:if="${id != null}" th:href="@{/empresa/}+${id}">EMPRESA</a></li>
+		<li><a href="#" th:if="${id == null}" th:href="@{/quienS}">QUINES SOMOS</a></li>
+		<li><a href="#" th:if="${id != null}" th:href="@{/quienS/}+${id}">QUINES SOMOS</a></li>
+		<li><a href="#" th:if="${id == null}" th:href="@{/productos}">PRODUCTOS</a></li>
+		<li><a href="#" th:if="${id != null}" th:href="@{/productos/}+${id}">PRODUCTOS</a></li>
+		<li><a href="#" th:if="${id == null}" th:href="@{/contactenos}">CONTACTENOS</a></li>
+		<li><a href="#" th:if="${id != null}" th:href="@{/contactenos/}+${id}">CONTACTENOS</a></li>
+		</ul>
+	</div>
+	
+	<p>
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">CARRITO DE COMPRAS</b></font>
+	<br>
+	<br>
 
 	<TABLE BORDER>
 		<TR>
 		    	<TD COLSPAN=5>TUS PRODUCTOS A COMPRAR</TD>
+		</TR>		
+	</TABLE>
+	
+		<TABLE BORDER  th:each="producto :${carritoUser.productos}"> 
+		<tr>	
+			<TD ROWSPAN=2><img th:src="@{/}+${producto.imagen}" alt="" width="200px" height="200px"></TD>
+			<TD th:text="${producto.nombre}"></TD>
+			<td th:text="@{Presentación: }+${producto.tamanio}"></td>
+			<td th:text="@{Precio und: $}+${producto.precio}"></td>
 		</TR>
 		<TR>
-			<TD ROWSPAN=2>imágen del producto</TD> <TD>Nombre del producto</TD>
-			<TD>Tamaño</TD> <TD>Costo unitario</TD>
+			<td th:text="@{Cantidad und: }+${carritoUser.cantidad}"></td>
+			<td th:text="@{Subtotal: }+${carritoUser.valoTotal}"></td>
+			<TD>costo envío: 10000</TD><TD>total 20000</TD>
 		</TR>
-		<TR>
-			<TD>cantidad solicitada</TD> <TD>subtotal</TD>
-			<TD>costo envío</TD><TD>total</TD>
-		</TR>
-		<TR>
-			<TD ROWSPAN=2>imágen del producto</TD> <TD>Nombre del producto</TD>
-			<TD>Tamaño</TD> <TD>Costo unitario</TD>
-		</TR>
-		<TR>
-			<TD>cantidad solicitada</TD> <TD>subtotal</TD>
-			<TD>costo envío</TD><TD>total</TD>
-		</TR>
-
-		<TR>
-			<TD ROWSPAN=2>imágen del producto</TD> <TD>Nombre del producto</TD>
-			<TD>Tamaño</TD> <TD>Costo unitario</TD>
-		</TR>
-		<TR>
-			<TD>cantidad solicitada</TD> <TD>subtotal</TD>
-			<TD>costo envío</TD><TD>total</TD>
-		</TR>
-	</TABLE><br><br>
+	
+	</TABLE>
+	<br><br>
+	
 	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
 	Su compra #orden tiene un costo de $XX.XXX<br>
 	<center>

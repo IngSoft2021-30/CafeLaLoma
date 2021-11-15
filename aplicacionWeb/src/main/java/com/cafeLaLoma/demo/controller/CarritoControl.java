@@ -5,16 +5,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import com.cafeLaLoma.demo.service.FacturaService;
-import com.cafeLaLoma.demo.service.ProdutoVentaServ;
+import com.cafeLaLoma.demo.service.CarritoService;
+import com.cafeLaLoma.demo.service.UsuarioService;
 
 @Controller
 public class CarritoControl {
-	//@Autowired
-	//CarritoService CarritoService;
+	
+	@Autowired
+	CarritoService carritoService;
+	
+	@Autowired
+	UsuarioService usuarioService;
 	@GetMapping("/carrito/{id}")
-	public String contactenos(@PathVariable(name = "id")Long id) {
+	public String contactenos(Model model,@PathVariable(name = "id")Long id) throws Exception {
+		model.addAttribute("carritoUser",carritoService.getAllCarritosxUser(usuarioService.getUserById(id)));
+
 		return "carrito";
 	}
 

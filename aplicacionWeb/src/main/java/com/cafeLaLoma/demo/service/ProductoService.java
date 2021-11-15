@@ -6,5 +6,5 @@ public interface ProductoService {
 
 	public Iterable<Producto> getAllProductos();
 	
-	public Producto getUserById(Long id) throws Exception;
+	public Producto getProductoById(Long id) throws Exception;
 }

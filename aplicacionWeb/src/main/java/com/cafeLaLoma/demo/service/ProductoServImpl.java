@@ -17,7 +17,7 @@ public class ProductoServImpl implements ProductoService{
 	}
 	
 	@Override
-	public Producto getUserById(Long id) throws Exception {
+	public Producto getProductoById(Long id) throws Exception {
 		return repository.findById(id).orElseThrow(() -> new Exception("El producto no existe."));
 		
 	}
