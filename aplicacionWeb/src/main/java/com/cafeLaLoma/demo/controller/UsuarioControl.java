@@ -62,14 +62,23 @@ public class UsuarioControl {
 		return "ingresoAdmin";
 	}
 	
-	@GetMapping("/usuario/{id}")
-	public String perfilUser(Model model, @PathVariable(name ="id")String id)throws Exception {
-		Usuario user= usuarioService.getUserByIdentificacion(id);
-		model.addAttribute("userForm", user);
-		System.out.print("---------"+user.getRoles().toString().contains("id=2"));
+	@GetMapping("/usuarioAut/{id}")
+	public String perfilUserAut(Model model, @PathVariable(name ="id")String id)throws Exception {
+			Usuario user= usuarioService.getUserByIdentificacion(id);
+			System.out.print(user);
+			model.addAttribute("userForm", user);
+			System.out.print("---------"+user.getRoles().toString().contains("id=2"));
 		return "perfilUsuario";
 	}
 
+	@GetMapping("/usuario/{id}")
+	public String perfilUser(Model model, @PathVariable(name ="id")Long id)throws Exception {
+			Usuario user= usuarioService.getUserById(id);
+			System.out.print(user);
+			model.addAttribute("userForm", user);
+			System.out.print("---------"+user.getRoles().toString().contains("id=2"));
+		return "perfilUsuario";
+	}
 	@GetMapping("/actualizarPerfil/{id}")
 	public String perfilUserAct(Model model, @PathVariable(name ="id")Long id)throws Exception {
 		Usuario userActu = usuarioService.getUserById(id);

@@ -2,19 +2,30 @@
 <html>
 <head>
 	<title>Cafe La Loma.</title>
-	<link rel="stylesheet" href="estilo.css">
+	<link type="text/css" rel="stylesheet" href="/estilo.css">
 </head>
 <body>
 <div class="header">
-<body><a href="#" th:href="@{/carrito}"><IMG SRC="carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a>   <a href="https://www.instagram.com"><IMG SRC="social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 10px; margin-right: 0px;"></a>&ensp;<a href="https://www.facebook.com"><IMG SRC="social2.jpg" WIDTH=40 HEIGHT=35 ></a>
+<body><a href="#" th:if="${id == null}" th:href="@{/index/0}">
+<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+<a href="#" th:if="${id != null}" th:href="@{/carrito/}+${id}">
+<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+<a href="https://www.instagram.com"><IMG SRC="/social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 10px; margin-right: 0px;"></a>
+&ensp;<a href="https://www.facebook.com"><IMG SRC="/social2.jpg" WIDTH=40 HEIGHT=35 ></a>
 </div>
 <div id="navegador">
 <ul>
-<li><a href="#" th:href="@{/index}">INICIO</a></li>
-<li><a href="#" th:href="@{/empresa}">EMPRESA</a></li>
-<li><a href="#" th:href="@{/quienS}">QUINES SOMOS</a></li>
-<li><a href="#" th:href="@{/productos}">PRODUCTOS</a></li>
-<li><a href="#" th:href="@{/contactenos}">CONTACTENOS</a></li>
+<li><a href="#" th:if="${id != 0}" th:href="@{/usuario/}+${id}">PERFIL</a></li>
+<li><a href="#" th:if="${id == null}" th:href="@{/index}">INICIO</a></li>
+<li><a href="#" th:if="${id != null}" th:href="@{/index/}+${id}">INICIO</a></li>
+<li><a href="#" th:if="${id == null}" th:href="@{/empresa}">EMPRESA</a></li>
+<li><a href="#" th:if="${id != null}" th:href="@{/empresa/}+${id}">EMPRESA</a></li>
+<li><a href="#" th:if="${id == null}" th:href="@{/quienS}">QUINES SOMOS</a></li>
+<li><a href="#" th:if="${id != null}" th:href="@{/quienS/}+${id}">QUINES SOMOS</a></li>
+<li><a href="#" th:if="${id == null}" th:href="@{/productos}">PRODUCTOS</a></li>
+<li><a href="#" th:if="${id != null}" th:href="@{/productos/}+${id}">PRODUCTOS</a></li>
+<li><a href="#" th:if="${id == null}" th:href="@{/contactenos}">CONTACTENOS</a></li>
+<li><a href="#" th:if="${id != null}" th:href="@{/contactenos/}+${id}">CONTACTENOS</a></li>
 </ul>
 </div>
 
@@ -23,7 +34,7 @@
 <br>
 <TABLE BORDER th:each="producto: ${productos}">
 	<TR>
-			<td ROWSPAN=2><img th:src="${producto.imagen}" alt="" width="200px" height="200px"></td>
+			<td ROWSPAN=2><img th:src="@{/}+${producto.imagen}" alt="" width="200px" height="200px"></td>
 			<td COLSPAN=3 th:text="${producto.nombre}"></td>
 	</TR>
 	<TR>
@@ -32,12 +43,16 @@
 	<TR>
 			<td >
 			<span th:if="${producto.disponible == 0}">AGOTADO</span>
-			<span th:if="${producto.disponible != 0}">
-			<a href="#" th:href="@{/carrito}">
+			<span th:if="${producto.disponible != 0 and id == null }">
+			<a href="#" th:href="@{/index/0}">
+			<button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+			Agregar
+			</button></a></span>
+			<span th:if="${producto.disponible != 0 and id != null }">
+			<a href="#" th:href="@{/carrito/}+${id}">
 			<button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 			Agregar
 			</button></a></span></td>
-			
 			<td th:text="@{Precio: $}+${producto.precio}"></td>
 			<td th:text="@{Presentación: }+${producto.tamanio}"></td>
 	</TR>

@@ -32,7 +32,7 @@
 		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p></p>
 			
 		<center>
-		<a href="#" th:href="@{/usuario/}+${autenticarForm.identificacion}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		<a href="#" th:href="@{/usuarioAut/}+${autenticarForm.identificacion}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 			Ingresar
 		
 		</button></a><br>

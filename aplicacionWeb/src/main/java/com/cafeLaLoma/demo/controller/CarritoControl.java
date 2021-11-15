@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cafeLaLoma.demo.service.FacturaService;
 import com.cafeLaLoma.demo.service.ProdutoVentaServ;
@@ -12,26 +13,9 @@ import com.cafeLaLoma.demo.service.ProdutoVentaServ;
 public class CarritoControl {
 	//@Autowired
 	//CarritoService CarritoService;
-	@GetMapping("/carrito")
-	public String contactenos() {
+	@GetMapping("/carrito/{id}")
+	public String contactenos(@PathVariable(name = "id")Long id) {
 		return "carrito";
 	}
 
-	/*@GetMapping("/perfilAdm")
-	public String perfilAdm() {
-		return "perfilAdmin";
-	}
-	@GetMapping("/inventario")
-	public String inventario() {
-		return "inventario";
-	}
-	@GetMapping("/gestionBD")
-	public String gestionBD() {
-		return "gestionBD";
-	}
-	@GetMapping("/productos")
-	public String productos() {
-		return "productos";
-	}*/
-	
 }

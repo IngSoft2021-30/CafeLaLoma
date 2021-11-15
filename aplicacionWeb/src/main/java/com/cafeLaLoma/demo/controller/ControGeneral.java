@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cafeLaLoma.demo.entity.Usuario;
@@ -30,8 +31,8 @@ public class ControGeneral {
 	@Autowired
 	ProductoService productoService;
 	
-	@GetMapping({"/","/index"})
-	public String index() {
+	@GetMapping({"/","/index","/index/{id}"})
+	public String index(@PathVariable(required = false)Long id) {
 		return "index";
 	}
 	
@@ -93,21 +94,26 @@ public class ControGeneral {
 		return "registro";
 	}
 	
-	@GetMapping("/empresa")
-	public String empresa() {
+	@GetMapping({"/empresa","/empresa/{id}"})
+	public String empresa(@PathVariable(required = false)Long id) {
 		return "empresa";
 	}
-	@GetMapping("/quienS")
-	public String quienesSomos() {
+	@GetMapping({"/quienS","/quienS/{id}"})
+	public String quienesSomos(@PathVariable(required = false)Long id) {
 		return "quienesSomos";
 	}
-	@GetMapping("/productos")
-	public String productos(Model model) {
+	@GetMapping({"/productos","/productos/{id}"})
+	public String productos(Model model, @PathVariable(required = false)Long id) {
 		model.addAttribute("productos",productoService.getAllProductos());
+		if(id !=null) {
+			System.out.print("con usuario");
+		}else
+			System.out.print("sin usuario");
+			
 		return "productos";
 	}
-	@GetMapping("/contactenos")
-	public String contactenos() {
+	@GetMapping({"/contactenos","/contactenos/{id}"})
+	public String contactenos(@PathVariable(required = false)Long id) {
 		return "contacto";
 	}
 }

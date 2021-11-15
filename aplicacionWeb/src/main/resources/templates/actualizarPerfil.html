@@ -11,10 +11,13 @@
 </head>
 	<body>
 	<div class="header">
-	<br><br>
-	<a href="#" th:href="@{/carrito}"><IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a>   <a href="https://www.instagram.com"><IMG SRC="/social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 10px; margin-right: 0px;"></a>&ensp;<a href="https://www.facebook.com"><IMG SRC="/social2.jpg" WIDTH=40 HEIGHT=35 ></a>
-
-	</div>
+<body><a href="#" th:if="${id == null}" th:href="@{/index/0}">
+<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+<a href="#" th:if="${id > 0}" th:href="@{/carrito/}+${id}">
+<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+<a href="https://www.instagram.com"><IMG SRC="/social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 10px; margin-right: 0px;"></a>
+&ensp;<a href="https://www.facebook.com"><IMG SRC="/social2.jpg" WIDTH=40 HEIGHT=35 ></a>
+</div>
 	<div id="navegador">
 	<ul>
 	<li></li>
@@ -49,7 +52,7 @@
 	
 
 	<center>
-	<a href="#" th:href="@{/usuario}"><button class="redondo">
+	<a href="#" th:href="@{/usuario/}+${userForm.id}"><button class="redondo">
 	Regresar
 	</button></a>
 	</center>
