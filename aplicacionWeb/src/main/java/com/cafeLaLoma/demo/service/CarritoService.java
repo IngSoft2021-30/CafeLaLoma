@@ -6,5 +6,5 @@ import com.cafeLaLoma.demo.entity.Usuario;
 public interface CarritoService {
 	public Iterable<Carrito> getAllCarritos();
 
-	public Carrito getAllCarritosxUser(Usuario user) throws Exception;
+	public Iterable<Carrito> getAllCarritosxUser(Usuario user) throws Exception;
 }
