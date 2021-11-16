@@ -7,4 +7,7 @@ public interface CarritoService {
 	public Iterable<Carrito> getAllCarritos();
 
 	public Iterable<Carrito> getAllCarritosxUser(Usuario user) throws Exception;
+
+	public double getTotal(Usuario user) throws Exception;
+
 }

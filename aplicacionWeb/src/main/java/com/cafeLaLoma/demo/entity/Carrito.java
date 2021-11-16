@@ -46,6 +46,11 @@ public class Carrito implements Serializable{
 	@Column
 	private double valoTotal;
 	
+	public Carrito() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Carrito(Long id) {
 		super();
 		this.id = id;

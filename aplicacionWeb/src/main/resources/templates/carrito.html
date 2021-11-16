@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="header">
-<body><a href="#" th:if="${id == null}" th:href="@{/index/0}">
+<a href="#" th:if="${id == null}" th:href="@{/index/0}">
 	<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
 	<a href="#" th:if="${id > 0}" th:href="@{/carrito/}+${id}">
 	<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
@@ -37,29 +37,31 @@
 	<TABLE BORDER>
 		<TR>
 		    	<TD COLSPAN=5>TUS PRODUCTOS A COMPRAR</TD>
-		</TR>		
-	</TABLE>
-		<TABLE BORDER  th:each="producto :${carritoUser.productos}"> 
+		</TR>	
+	</table>
+		<span th:each="car :${carritoUser}">
+		<TABLE BORDER th:each="producto :${car.productos}">
 		<tr>	
-			<td th:text="${carritoUser}"></TD>
 			<TD ROWSPAN=2><img th:src="@{/}+${producto.imagen}" alt="" width="200px" height="200px"></TD>
 			<TD th:text="${producto.nombre}"></TD>
 			<td th:text="@{Presentación: }+${producto.tamanio}"></td>
 			<td th:text="@{Precio und: $}+${producto.precio}"></td>
 		</TR>
-		<TR>
-			<td th:text="@{Cantidad und: }+${carritoUser.cantidad}"></td>
-			<td th:text="@{Subtotal: $}+${carritoUser.cantidad* producto.precio}"></td>+
-		</TR>
-
+		<TR th:with="totalPrice=${totalPrice} +@{1}+ ${car.valoTotal}">
+			<td th:text="@{Cantidad und: }+${car.cantidad}"></td>
+			<td th:text="@{Subtotal: $}+${car.cantidad* producto.precio}"></td>
+		
+       </TR>
 	</TABLE>
+		</span>	
+		
 	<br><br>
-	
+
 	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
-	
-	Valor total de productos $<text th:text="${carritoUser.valoTotal}"/><br>
+	Valor total de productos $<text th:text="${totalCompra}"/><br>
 	Su envio tiene un costo de $10000<br>
-	Valor total de la compra $<text th:text="${carritoUser.valoTotal}+@{10000}"/>
+	Valor total de la compra $<text th:text="${totalCompra}+@{10000}"/>
+
 	<center>
 
 	<a href="historialCompras.html"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">

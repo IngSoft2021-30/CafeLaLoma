@@ -19,7 +19,7 @@ public class CarritoControl {
 	@GetMapping("/carrito/{id}")
 	public String contactenos(Model model,@PathVariable(name = "id")Long id) throws Exception {
 		model.addAttribute("carritoUser",carritoService.getAllCarritosxUser(usuarioService.getUserById(id)));
-		//model.addAttributes("totalCompra",carritoService.getTotal(usuarioService.getUserById(id)));
+		model.addAttribute("totalCompra",carritoService.getTotal(usuarioService.getUserById(id)));
 		return "carrito";
 	}
 

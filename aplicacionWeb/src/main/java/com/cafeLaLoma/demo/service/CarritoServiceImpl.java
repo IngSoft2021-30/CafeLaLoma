@@ -1,5 +1,6 @@
 package com.cafeLaLoma.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,24 @@ public class CarritoServiceImpl implements CarritoService{
 	@Override
 	public Iterable<Carrito> getAllCarritosxUser(Usuario user) throws Exception {
 		Iterable<Carrito> car = repository.findAll();
-		List<Carrito> carRt = null;
+		List<Carrito> carRt = new ArrayList<Carrito>();
 		for(Carrito carU: car) {
-			System.out.println(carU.getUsuario_id());
-			System.out.println(user);
-			  if (carU.getUsuario_id().equals(user)) {
-			    carRt.add(carU);
-			  }
+			if (carU.getUsuario_id().equals(user)) {
+					carRt.add(carU);
 			}
+		}
 		return carRt;
+	}
+	@Override
+	public double getTotal(Usuario user) throws Exception {
+		Iterable<Carrito> car = new ArrayList<Carrito>();
+		car = getAllCarritosxUser(user);
+		double total=0;
+		for(Carrito carU: car) {
+			total=total+carU.getValoTotal();
+		}
+		// TODO Auto-generated method stub
+		return total;
 	}
  
 }
