@@ -9,10 +9,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cafeLaLoma.demo.entity.Usuario;
 import com.cafeLaLoma.demo.repository.RoleRepository;
+import com.cafeLaLoma.demo.service.ProductoService;
 import com.cafeLaLoma.demo.service.UsuarioService;
 
 import dto.Autenticacion;
@@ -25,9 +27,12 @@ public class ControGeneral {
 
 	@Autowired
 	RoleRepository roleRepository;
+
+	@Autowired
+	ProductoService productoService;
 	
-	@GetMapping({"/","/index"})
-	public String index() {
+	@GetMapping({"/","/index","/index/{id}"})
+	public String index(@PathVariable(required = false)Long id) {
 		return "index";
 	}
 	
@@ -45,7 +50,7 @@ public class ControGeneral {
 		}else {
 			try {
 				Usuario validar = usuarioService.getUserByIdentificacion(user.getIdentificacion());
-				usuarioService.autenticarUsuario(user,validar);
+				usuarioService.autenticarCliente(user,validar);
 				model.addAttribute("userForm", validar);	
 				return "perfilUsuario";
 			} catch (Exception e) {
@@ -89,20 +94,26 @@ public class ControGeneral {
 		return "registro";
 	}
 	
-	@GetMapping("/empresa")
-	public String empresa() {
+	@GetMapping({"/empresa","/empresa/{id}"})
+	public String empresa(@PathVariable(required = false)Long id) {
 		return "empresa";
 	}
-	@GetMapping("/quienS")
-	public String quienesSomos() {
+	@GetMapping({"/quienS","/quienS/{id}"})
+	public String quienesSomos(@PathVariable(required = false)Long id) {
 		return "quienesSomos";
 	}
-	@GetMapping("/productos")
-	public String productos() {
+	@GetMapping({"/productos","/productos/{id}"})
+	public String productos(Model model, @PathVariable(required = false)Long id) {
+		model.addAttribute("productos",productoService.getAllProductos());
+		if(id !=null) {
+			System.out.print("con usuario");
+		}else
+			System.out.print("sin usuario");
+			
 		return "productos";
 	}
-	@GetMapping("/contactenos")
-	public String contactenos() {
+	@GetMapping({"/contactenos","/contactenos/{id}"})
+	public String contactenos(@PathVariable(required = false)Long id) {
 		return "contacto";
 	}
 }

@@ -2,62 +2,47 @@
 <html>
 <head>
 	<title>Cafe La Loma.</title>
-	<link rel="stylesheet" href="estilo.css">
+	<link type="text/css" rel="stylesheet" href="/estilo.css">
 </head>
 <body>
 <div class="header">
 <body><br><br><br>
-</div>
-<div id="navegador">
-<ul>
-<li></li>
-</ul>
-</div>
-
-<p>
-<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">INVENTARIO ACTUAL</b></font>
-<br>
-<br>
-
-	<TABLE BORDER>
-		<TR>
-		    	<TD COLSPAN=4>INVENTARIO</TD>
-		</TR>
-		<TR>
-			<TD>ID del producto</TD> <TD>Nombre del producto</TD>
-			<TD>Tamaño</TD> <TD>Cantidades disponibles</TD>
-		</TR>
-		<TR>
-			<TD> #xxx</TD> <TD>..........</TD>
-			<TD>xx LB</TD> <TD>xxx</TD>
-		</TR>
-		<TR>
-			<TD> #xxx</TD> <TD>..........</TD>
-			<TD>xx LB</TD> <TD>xxx</TD>
-		</TR>
-		<TR>
-			<TD> #xxx</TD> <TD>..........</TD>
-			<TD>xx LB</TD> <TD>xxx</TD>
-		</TR>
-		<TR>
-			<TD> #xxx</TD> <TD>..........</TD>
-			<TD>xx LB</TD> <TD>xxx</TD>
-		</TR>
-	</TABLE><br><br>
+	</div>
+	<div id="navegador">
+	<ul>
+	<li></li>
+	</ul>
+	</div>
+	
+	<p>
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">INVENTARIO ACTUAL</b></font>
+	<br>
+	<br>
+		<TABLE BORDER >
+			<TR>
+			    	<TD COLSPAN=4>INVENTARIO</TD>
+			</TR>
+			<TR>
+				<TD>ID del producto</TD> <TD>Nombre del producto</TD>
+				<TD>Tamaño</TD> <TD>Cantidades disponibles</TD>
+			</TR>
+			<TR th:each="producto: ${inventForm}">
+					<td th:text="${producto.id}"></td>
+					<td th:text="${producto.nombre}"></td>
+					<td th:text="${producto.tamanio}"></td>
+					<td th:text="${producto.disponible}"></td>
+			</TR>
+			
+		</TABLE>
 	<center>
-		<a href="#" th:href="@{/perfilAdm}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		<a href="#" th:href="@{/admin/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 		REGRESAR
 		</button></a>
-	<button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-	EXPORTAR
-	</button><br>
-
-<br>
-
-</center>
-<address>
-CAFE LA LOMA TIENDA VIRUAL.<br>
-XXXXX-Colombia<br>
-XXXXXXXX - 3XX-XXX XXXX</address>
+	<br>
+	</center>
+	<address>
+	CAFE LA LOMA TIENDA VIRUAL.<br>
+	XXXXX-Colombia<br>
+	XXXXXXXX - 3XX-XXX XXXX</address>
 </body>
 </html>

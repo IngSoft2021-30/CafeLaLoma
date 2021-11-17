@@ -30,12 +30,12 @@ public class Carrito implements Serializable{
 	@GenericGenerator(name="native",strategy="native")
 	private Long id;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="usuario_id",unique=false)
 	private Usuario usuario_id;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "carrito_productos",
+	@JoinTable(name = "carrito_productos", 
 			joinColumns=@JoinColumn(name="carrito_id"),
 			inverseJoinColumns=@JoinColumn(name="producto_id"))
 	@JoinColumn(name="producto_id")
@@ -46,6 +46,11 @@ public class Carrito implements Serializable{
 	@Column
 	private double valoTotal;
 	
+	public Carrito() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Carrito(Long id) {
 		super();
 		this.id = id;

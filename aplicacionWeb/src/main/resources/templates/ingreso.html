@@ -32,17 +32,17 @@
 		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p></p>
 			
 		<center>
-		<a href="#" th:href="@{/usuario/}+${autenticarForm.identificacion}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-			Actualizar
+		<a href="#" th:href="@{/usuarioAut/}+${autenticarForm.identificacion}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+			Ingresar
 		
 		</button></a><br>
 		<p style="font-size:120%; color:#8B0D32;"  th:if="${formErrorMessage}" th:text="${formErrorMessage}">Name Error</p>
 	
 	</form>
-	</center>
+	</center></p></font>
 	<address>
-	CAFE LA LOMA TIENDA VIRUAL.<br>
-	XXXXX-Colombia<br>
-	XXXXXXXX - 3XX-XXX XXXX</address>
+CAFE LA LOMA TIENDA VIRUAL.<br>
+Nariño-Colombia<br>
+318-770 6752</address>
 </body>
 </html>

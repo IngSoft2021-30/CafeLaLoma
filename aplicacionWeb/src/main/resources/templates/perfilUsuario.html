@@ -11,23 +11,37 @@
 </head>
 <body>
 	<div class="header">
-
-	<br><br><br>
-	</div>
+<body><a href="#" th:if="${id == null}" th:href="@{/index/0}">
+<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+<a href="#" th:if="${id > 0}" th:href="@{/carrito/}+${id}">
+<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+<a href="https://www.instagram.com"><IMG SRC="/social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 10px; margin-right: 0px;"></a>
+&ensp;<a href="https://www.facebook.com"><IMG SRC="/social2.jpg" WIDTH=40 HEIGHT=35 ></a>
+</div>
 	<div id="navegador">
 	<ul>
-	<li></li>
+	<li><a href="#" th:if="${id == null}" th:href="@{/index}">INICIO</a></li>
+	<li><a href="#" th:if="${id != null}" th:href="@{/index/}+${userForm.id}">INICIO</a></li>
+	<li><a href="#" th:if="${id == null}" th:href="@{/empresa}">EMPRESA</a></li>
+	<li><a href="#" th:if="${id != null}" th:href="@{/empresa/}+${id}">EMPRESA</a></li>
+	<li><a href="#" th:if="${id == null}" th:href="@{/quienS}">QUINES SOMOS</a></li>
+	<li><a href="#" th:if="${id != null}" th:href="@{/quienS/}+${id}">QUINES SOMOS</a></li>
+	<li><a href="#" th:if="${id == null}" th:href="@{/productos}">PRODUCTOS</a></li>
+	<li><a href="#" th:if="${id != null}" th:href="@{/productos/}+${id}">PRODUCTOS</a></li>
+	<li><a href="#" th:if="${id == null}" th:href="@{/contactenos}">CONTACTENOS</a></li>
+	<li><a href="#" th:if="${id != null}" th:href="@{/contactenos/}+${id}">CONTACTENOS</a></li>
 	</ul>
 	</div>
 
 	<p form th:object="${userForm}" th:action="@{/usuario}"></p>
-	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px; ">Bienvenido <text th:text="${userForm.nombre}"/>  <text th:text="${userForm.tipoID}"/></b></font>
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px; ">Bienvenido/a <text th:text="${userForm.nombre}"/>  <text th:text="${userForm.apellido}"/></b></font>
 	<br>
 	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
 		Selecione una opción.<br>
-	
+		<!--Obtener roles<text th:each="role :${userForm.roles}" th:text="${role.name}" ></text>-->
+
 		Datos personales<br>
-		<a href="#" th:href="@{/actualizarPerfil/}+${userForm.id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		<a href="#" th:href="@{/actualizarPerfil/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 		Actualizar
 		</button></a><br>
 		Información de tus pedidos<br>
@@ -35,16 +49,14 @@
 		Ver
 		</button></a><br>
 		Carrito de compras<br>
-		<a href="#" th:href="@{/carrito}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		<a href="#" th:href="@{/carrito/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 		Ver
 		</button></a><br>
 	<br>
-	<center>
-	
-	</center>
-	<address>
-	CAFE LA LOMA TIENDA VIRUAL.<br>
-	XXXXX-Colombia<br>
-	XXXXXXXX - 3XX-XXX XXXX</address>
+</font>
+<address>
+CAFE LA LOMA TIENDA VIRUAL.<br>
+Nariño-Colombia<br>
+318-770 6752</address>
 </body>
 </html>

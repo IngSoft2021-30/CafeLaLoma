@@ -7,14 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-@Table(name ="producto")
 public class Producto implements Serializable{
 
 	/**
@@ -41,7 +39,16 @@ public class Producto implements Serializable{
 	@Column
 	@NotBlank
 	private String imagen;
+	@Column
+	@NotBlank
+	private int disponible;
 	
+	public int getDisponible() {
+		return disponible;
+	}
+	public void setDisponible(int disponible) {
+		this.disponible = disponible;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -81,13 +88,14 @@ public class Producto implements Serializable{
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", tamanio=" + tamanio
-				+ ", descripcion=" + descripcion + ", imagen=" + imagen + "]";
+				+ ", descripcion=" + descripcion + ", imagen=" + imagen + ", disponible=" + disponible + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + disponible;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((imagen == null) ? 0 : imagen.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
@@ -108,6 +116,8 @@ public class Producto implements Serializable{
 			if (other.descripcion != null)
 				return false;
 		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (disponible != other.disponible)
 			return false;
 		if (id == null) {
 			if (other.id != null)

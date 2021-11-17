@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Cafe La Loma.</title>
@@ -28,50 +28,13 @@
 		<li><a href="#" th:if="${id != null}" th:href="@{/contactenos/}+${id}">CONTACTENOS</a></li>
 		</ul>
 	</div>
-	
-	<p>
-	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">CARRITO DE COMPRAS</b></font>
-	<br>
-	<br>
-
-	<TABLE BORDER>
-		<TR>
-		    	<TD COLSPAN=5>TUS PRODUCTOS A COMPRAR</TD>
-		</TR>	
-	</table>
-		<span th:each="car :${carritoUser}">
-		<TABLE BORDER th:each="producto :${car.productos}">
-		<tr>	
-			<TD ROWSPAN=2><img th:src="@{/}+${producto.imagen}" alt="" width="200px" height="200px"></TD>
-			<TD th:text="${producto.nombre}"></TD>
-			<td th:text="@{Presentación: }+${producto.tamanio}"></td>
-			<td th:text="@{Precio und: $}+${producto.precio}"></td>
-		</TR>
-		<TR th:with="totalPrice=${totalPrice} +@{1}+ ${car.valoTotal}">
-			<td th:text="@{Cantidad und: }+${car.cantidad}"></td>
-			<td th:text="@{Subtotal: $}+${car.cantidad* producto.precio}"></td>		
-			<td>
-			<form class="form" role="form" autocomplete="off" th:object="${carritoUser}" th:action="@{/carritoB/}+${id}" method="post">
-		
-			<span th:if="${producto.disponible != 0 and id != null }">
-			<p style="margin-left: 0; margin-right: 0;"><input type="submit" class="redondo" style="font-size:18px; width: 170px; height: 40px;" value="Eliminar"></p></span>
-			</form></td>
-       </TR>
-	</TABLE>
-		</span>	
-		
-	<br><br>
-
-	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
-	Valor total de productos $<text th:text="${totalCompra}"/><br>
-	Su envio tiene un costo de $10000<br>
-	Valor total de la compra $<text th:text="${totalCompra}+@{10000}"/>
-
 	<center>
-
-	<a href="historialCompras.html"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">
-	COMPRAR
-</button></a><br>
+	<p>
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">Estado petición:</b></font>
+	<br>
+	<br>
+	<img th:src="@{/Noexitosa.png}" alt="" width="400px" height="300px">
+	</p>
 
 <br>
 

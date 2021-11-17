@@ -65,7 +65,7 @@ public class Usuario implements Serializable{
 	@Transient
 	private String confirmPassword;
 
-	@Size(min=1)
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles",
 			joinColumns=@JoinColumn(name="usuario_id"),

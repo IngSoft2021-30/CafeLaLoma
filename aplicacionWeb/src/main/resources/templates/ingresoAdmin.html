@@ -7,30 +7,42 @@
 <body>
 <div class="header">
 <body><br><br><br>
-</div>
-<div id="navegador">
-<ul>
-<li></li>
-
-</ul>
-</div>
-
-<p>
-<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">INGRESO PARA PERSONAL ADMINISTRATIVO</b></font>
-<br>
-<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
-
-Usuario: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Usuario" name="numID"><br>
-Contraseña: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Contraseña" name="empresa"><br>
-<br><br>
-<center>
-<a href="perfilAdmin.html"><button class="redondo">
-Ingresar
-</button></a>
-</center>
+	</div>
+	<div id="navegador">
+	<ul>
+	<li></li>
+	
+	</ul>
+	</div>
+	
+	<p>
+	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">INGRESO PARA PERSONAL ADMINISTRATIVO</b></font>
+	<br>
+	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
+	
+	<form class="form" role="form" autocomplete="off" th:object="${adminForm}" th:action="@{/ingresoadmin}" method="post">
+		<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
+	
+		
+		<p>Número de dentificación:<input type="text" class="resizedTextbox" size="20" maxlength="30" th:field="${adminForm.identificacion}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('identificacion')}" th:errors="*{identificacion}">Name Error</p>
+			
+		<p>Contraseña: <input type="password" class="resizedTextbox" size="20" maxlength="30" th:field="${adminForm.password}"><br>
+		<p style="font-size:80%; color:#8B0D32;"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p></p>
+			
+		<center>
+		<a href="#" th:href="@{/usuario/}+${adminForm.identificacion}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+			Ingresar
+		
+		</button></a><br>
+		<p style="font-size:120%; color:#8B0D32;"  th:if="${formErrorMessage}" th:text="${formErrorMessage}">Name Error</p>
+	
+	</form>
+	</p>
+	</center></font>
 <address>
 CAFE LA LOMA TIENDA VIRUAL.<br>
-XXXXX-Colombia<br>
-XXXXXXXX - 3XX-XXX XXXX</address>
+Nariño-Colombia<br>
+318-770 6752</address>
 </body>
 </html>

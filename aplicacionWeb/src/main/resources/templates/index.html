@@ -2,19 +2,30 @@
 <html>
 <head>
 	<title>Cafe La Loma.</title>
-	<link rel="stylesheet" href="static/estilo.css" th:href="@{estilo.css}">
+	<link type="text/css" rel="stylesheet" href="/estilo.css">
 </head>
 <body>
 <div class="header">
-<body><a href="https://www.instagram.com"><IMG SRC="social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1200px; margin-right: 0px;"></a>&ensp;<a href="https://www.facebook.com"><IMG SRC="social2.jpg" WIDTH=40 HEIGHT=35 ></a>
+<body><a href="#" th:if="${id == null or id==0}" th:href="@{/index/0}">
+<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+<a href="#" th:if="${id  > 0}" th:href="@{/carrito/}+${id}">
+<IMG SRC="/carrito.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 1100px; margin-right: 0px;"></a> 
+<a href="https://www.instagram.com"><IMG SRC="/social1.jpg" WIDTH=40 HEIGHT=35 style="margin-top: 0px; margin-left: 10px; margin-right: 0px;"></a>
+&ensp;<a href="https://www.facebook.com"><IMG SRC="/social2.jpg" WIDTH=40 HEIGHT=35 ></a>
 </div>
 <div id="navegador">
 <ul>
-<li><a href="#" th:href="@{/index}">INICIO</a></li>
-<li><a href="#" th:href="@{/empresa}">EMPRESA</a></li>
-<li><a href="#" th:href="@{/quienS}">QUINES SOMOS</a></li>
-<li><a href="#" th:href="@{/productos}">PRODUCTOS</a></li>
-<li><a href="#" th:href="@{/contactenos}">CONTACTENOS</a></li>
+<li><a href="#" th:if="${id > 0}" th:href="@{/usuario/}+${id}">PERFIL</a></li>
+<li><a href="#" th:if="${id == null or id==0}" th:href="@{/index}">INICIO</a></li>
+<li><a href="#" th:if="${id > 0}" th:href="@{/index/}+${id}">INICIO</a></li>
+<li><a href="#" th:if="${id == null or id==0}" th:href="@{/empresa}">EMPRESA</a></li>
+<li><a href="#" th:if="${id > 0}" th:href="@{/empresa/}+${id}">EMPRESA</a></li>
+<li><a href="#" th:if="${id == null or id==0}" th:href="@{/quienS}">QUINES SOMOS</a></li>
+<li><a href="#" th:if="${id > 0}" th:href="@{/quienS/}+${id}">QUINES SOMOS</a></li>
+<li><a href="#" th:if="${id == null or id==0}" th:href="@{/productos}">PRODUCTOS</a></li>
+<li><a href="#" th:if="${id > 0}" th:href="@{/productos/}+${id}">PRODUCTOS</a></li>
+<li><a href="#" th:if="${id == null or id==0}" th:href="@{/contactenos}">CONTACTENOS</a></li>
+<li><a href="#" th:if="${id > 0}" th:href="@{/contactenos/}+${id}">CONTACTENOS</a></li>
 </ul>
 </div>
 
@@ -24,19 +35,28 @@
 <font color="000000" SIZE=4><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;"><br>Este portal de ventas esta diseñado para cumplir las necesidades de
 	nuestros clientes,debe contar con un registro previo para realizar sus compras.
 <br><br>
-Recuerde que puede ser distribuidor nuestro..................................................................................................................
+Recuerde que puede ser distribuidor nuestro
+<br><br>
+
+	<span th:if="${id==0}">
+	<font color="8B0D32" SIZE=5>
+	<b>DEBE REGISTRARSE O INGRESAR PARA ACCEDER AL CARRITO</b></font>
+	</span>
 <br><br>
 <center>
-<a href="#" th:href="@{/registrarse}"><button class="redondo">
+<a href="#" th:if="${id == null or id==0}" th:href="@{/registrarse}"><button class="redondo">
 Registrarse
 </button></a>
-<a href="#" th:href="@{/ingresar}"><button class="redondo">
+<a href="#" th:if="${id == null or id==0}" th:href="@{/ingresar}"><button class="redondo">
 Ingresar
+</button></a>
+<a href="#" th:if="${id > 0}" th:href="@{/index}"><button class="redondo">
+Cerrar sesión
 </button></a>
 </center>
 <address>
 CAFE LA LOMA TIENDA VIRUAL.<br>
-XXXXX-Colombia<br>
-XXXXXXXX - 3XX-XXX XXXX</address>
+Nariño-Colombia<br>
+318-770 6752</address>
 </body>
 </html>

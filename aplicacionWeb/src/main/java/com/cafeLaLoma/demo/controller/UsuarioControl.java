@@ -18,6 +18,7 @@ import com.cafeLaLoma.demo.service.FacturaService;
 import com.cafeLaLoma.demo.service.ProdutoVentaServ;
 import com.cafeLaLoma.demo.service.UsuarioService;
 
+import dto.Autenticacion;
 import dto.CambiarPassword;
 
 @Controller
@@ -35,22 +36,54 @@ public class UsuarioControl {
 	UsuarioService usuarioService;
 
 	@GetMapping("/ingresoadmin")
-	public String ingresoAdm() {
-		
+	public String ingresoAdm(Model model) {
+		model.addAttribute("adminForm", new Autenticacion());
 		return "ingresoAdmin";
 	}
-	@GetMapping("/usuario/{id}")
-	public String perfilUser(Model model, @PathVariable(name ="id")String id)throws Exception {
-		Usuario user= usuarioService.getUserByIdentificacion(id);
-		model.addAttribute("userForm", user);
+	
+	@PostMapping("/ingresoadmin")
+	public String autenticarAdmin(@Valid @ModelAttribute("adminForm") Autenticacion admin, BindingResult result, ModelMap model, Model model1) {
+		if(result.hasErrors()) {
+			model.addAttribute("autenticarForm", admin);	
+			System.out.print("-----------------------------"+result.getFieldError());
+		}else {
+			try {
+				Usuario validar = usuarioService.getUserByIdentificacion(admin.getIdentificacion());
+				usuarioService.autenticarAdmin(admin,validar);
+				model.addAttribute("adminForm", validar);	
+				model1.addAttribute("adminForm", validar);
+				return perfilAdmin(model1,validar.getIdentificacion());
+			} catch (Exception e) {
+				model.addAttribute("formErrorMessage", e.getMessage());
+				model.addAttribute("autenticarForm", admin);
+				System.out.print("______________________"+e.getMessage());
+			}
+		}		
+		System.out.print(admin.getIdentificacion());
+		return "ingresoAdmin";
+	}
+	
+	@GetMapping("/usuarioAut/{id}")
+	public String perfilUserAut(Model model, @PathVariable(name ="id")String id)throws Exception {
+			Usuario user= usuarioService.getUserByIdentificacion(id);
+			System.out.print(user);
+			model.addAttribute("userForm", user);
+			System.out.print("---------"+user.getRoles().toString().contains("id=2"));
 		return "perfilUsuario";
 	}
 
+	@GetMapping("/usuario/{id}")
+	public String perfilUser(Model model, @PathVariable(name ="id")Long id)throws Exception {
+			Usuario user= usuarioService.getUserById(id);
+			System.out.print(user);
+			model.addAttribute("userForm", user);
+			System.out.print("---------"+user.getRoles().toString().contains("id=2"));
+		return "perfilUsuario";
+	}
 	@GetMapping("/actualizarPerfil/{id}")
 	public String perfilUserAct(Model model, @PathVariable(name ="id")Long id)throws Exception {
 		Usuario userActu = usuarioService.getUserById(id);
 		model.addAttribute("userForm", userActu);
-		model.addAttribute("userList", usuarioService.getAllUsuario());
 		model.addAttribute("roles",roleRepository.findAll());
 		CambiarPassword cont = new CambiarPassword(userActu.getId());
 		cont.setPasswordActual(userActu.getPassword());
@@ -60,26 +93,22 @@ public class UsuarioControl {
 		return "actualizarPerfil";
 	}
 	
-	@PostMapping("/actualizarPerfil")
-	public String crearUsuario(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model) {
+	@PostMapping("/actualizarPerfil/{id}")
+	public String crearUsuario(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model,@PathVariable(name ="id")Long id) {
 		if(result.hasErrors()) {
 			model.addAttribute("userForm", user);	
-			System.out.print(user.getNombre()+"-----------------------------"+result.getFieldError());
+			System.out.print("-----------------------------"+result.getFieldError());
 		}else {
 			try {
 				usuarioService.updateUser(user);
+				model.addAttribute("ErrorMessage", user.getRoles()+"---"+user.getId());
 				return "perfilUsuario";
 			} catch (Exception e) {
-				model.addAttribute("formErrorMessage", e.getMessage());
+				model.addAttribute("ErrorMessage", e.getMessage());
 				model.addAttribute("userForm", user);
-				model.addAttribute("userList", usuarioService.getAllUsuario());
-				model.addAttribute("roles",roleRepository.findAll());
-				System.out.print("______________________"+e.getMessage());
 			}
 		}		
-		model.addAttribute("userList", usuarioService.getAllUsuario());
 		model.addAttribute("roles",roleRepository.findAll());
-		System.out.print(user.getTipoID());
 		return "actualizarPerfil";
 	}
 	
@@ -111,30 +140,25 @@ public class UsuarioControl {
 	public String infoPedidos() {
 		return "historialCompras";
 	}
-	@GetMapping("/admin")
-	public String perfilAdmin() {
+	@GetMapping("/admin/{id}")
+	public String perfilAdmin(Model model, @PathVariable(name ="id")String id)throws Exception {
+		Usuario admin= usuarioService.getUserByIdentificacion(id);
+		model.addAttribute("adminForm", admin);
 		return "perfilAdmin";
 	}
-	@GetMapping("/reporteF")
-	public String reporteF(Model model) {
+	@GetMapping("/reporteF/{id}")
+	public String reporteF(Model model, @PathVariable(name ="id")String id)throws Exception {
 		model.addAttribute("facturaL",facturaService.getAllFacturas());
 		return "reporteFecha";
 	}
-	@GetMapping("/reporteP")
-	public String reporteP(Model model) {
+	@GetMapping("/reporteP/{id}")
+	public String reporteP(Model model, @PathVariable(name ="id")String id)throws Exception {
 		model.addAttribute("ventasL",productoVentaService.getAllProductosventa());
 		return "reporteMasVend";
 	}
-	@GetMapping("/perfilAdm")
-	public String perfilAdm() {
-		return "perfilAdmin";
-	}
-	@GetMapping("/inventario")
-	public String inventario() {
-		return "inventario";
-	}
-	@GetMapping("/gestionBD")
-	public String gestionBD() {
+	
+	@GetMapping("/gestionBD/{id}")
+	public String gestionBD(Model model, @PathVariable(name ="id")String id)throws Exception {
 		return "gestionBD";
 	}
 

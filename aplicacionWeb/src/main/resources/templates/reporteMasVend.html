@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Cafe La Loma.</title>
-	<link rel="stylesheet" href="static/estilo.css" th:href="@{estilo.css}">
+	<link type="text/css" rel="stylesheet" href="/estilo.css">
 </head>
 <body>
 <div class="header">
@@ -51,15 +51,13 @@
 		</TR>
 	</TABLE><br><br>
 	<center>
-		<a href="#" th:href="@{/perfilAdm}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		<a href="#" th:href="@{/admin/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 		REGRESAR
 		</button></a>
-	<button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
-	EXPORTAR
-	</button><br>
+
 
 <br>
-
+</font>
 </center>
 <address>
 CAFE LA LOMA TIENDA VIRUAL.<br>
