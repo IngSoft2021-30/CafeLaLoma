@@ -83,7 +83,6 @@ public class UsuarioControl {
 	public String perfilUserAct(Model model, @PathVariable(name ="id")Long id)throws Exception {
 		Usuario userActu = usuarioService.getUserById(id);
 		model.addAttribute("userForm", userActu);
-		model.addAttribute("userList", usuarioService.getAllUsuario());
 		model.addAttribute("roles",roleRepository.findAll());
 		CambiarPassword cont = new CambiarPassword(userActu.getId());
 		cont.setPasswordActual(userActu.getPassword());
@@ -93,25 +92,25 @@ public class UsuarioControl {
 		return "actualizarPerfil";
 	}
 	
-	@PostMapping("/actualizarPerfil")
-	public String crearUsuario(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model) {
+	@PostMapping("/actualizarPerfil/{id}")
+	public String crearUsuario(@Valid @ModelAttribute("userForm") Usuario user, BindingResult result, ModelMap model,@PathVariable(name ="id")Long id) {
 		if(result.hasErrors()) {
 			model.addAttribute("userForm", user);	
 			System.out.print("-----------------------------"+result.getFieldError());
 		}else {
 			try {
+				model.addAttribute("userForm",usuarioService.getUserById(id));
 				usuarioService.updateUser(user);
+				model.addAttribute("roles",roleRepository.findAll());
 				return "perfilUsuario";
 			} catch (Exception e) {
-				model.addAttribute("formErrorMessage", e.getMessage());
+				model.addAttribute(".......................jjjjjjjjjjjjformErrorMessage", e.getMessage());
 				model.addAttribute("userForm", user);
-				model.addAttribute("userList", usuarioService.getAllUsuario());
-				model.addAttribute("roles",roleRepository.findAll());
-				System.out.print("______________________"+e.getMessage());
 			}
 		}		
-		System.out.print(user.getTipoID());
-		return "actualizarPerfil";
+		model.addAttribute("roles",roleRepository.findAll());
+		System.out.println("______________________RETORNO ACTUALIZAR PERRRFIL------------"+user.getRoles());
+		return "perfilUsuario";
 	}
 	
 	@PostMapping("/actualizarPerfilC")

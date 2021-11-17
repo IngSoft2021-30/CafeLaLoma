@@ -11,4 +11,6 @@ public interface CarritoRepository extends CrudRepository<Carrito, Long> {
 
 	public Optional<Carrito> findById(Long id);
 	
+	public void deleteById(Long id);	
+	
 }

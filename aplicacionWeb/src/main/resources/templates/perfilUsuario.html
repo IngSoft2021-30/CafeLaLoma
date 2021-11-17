@@ -21,7 +21,7 @@
 	<div id="navegador">
 	<ul>
 	<li><a href="#" th:if="${id == null}" th:href="@{/index}">INICIO</a></li>
-	<li><a href="#" th:if="${id != null}" th:href="@{/index/}+${id}">INICIO</a></li>
+	<li><a href="#" th:if="${id != null}" th:href="@{/index/}+${userForm.id}">INICIO</a></li>
 	<li><a href="#" th:if="${id == null}" th:href="@{/empresa}">EMPRESA</a></li>
 	<li><a href="#" th:if="${id != null}" th:href="@{/empresa/}+${id}">EMPRESA</a></li>
 	<li><a href="#" th:if="${id == null}" th:href="@{/quienS}">QUINES SOMOS</a></li>
@@ -41,7 +41,7 @@
 		<!--Obtener roles<text th:each="role :${userForm.roles}" th:text="${role.name}" ></text>-->
 
 		Datos personales<br>
-		<a href="#" th:href="@{/actualizarPerfil/}+${userForm.id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		<a href="#" th:href="@{/actualizarPerfil/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 		Actualizar
 		</button></a><br>
 		Información de tus pedidos<br>
@@ -49,7 +49,7 @@
 		Ver
 		</button></a><br>
 		Carrito de compras<br>
-		<a href="#" th:href="@{/carrito}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+		<a href="#" th:href="@{/carrito/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 		Ver
 		</button></a><br>
 	<br>

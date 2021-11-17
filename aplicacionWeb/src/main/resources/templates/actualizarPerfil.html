@@ -24,7 +24,7 @@
 	</ul>
 	</div>
 	
-	<form class="form" role="form" autocomplete="off" th:object="${userForm}" th:action="@{/actualizarPerfil}" method="post">
+	<form class="form" role="form" autocomplete="off" th:object="${userForm}" th:action="@{/actualizarPerfil/}+${id}" method="post">
 		
 	<font color="8B0D32" SIZE=8><b><p style="margin-top: 0px; margin-left: 300px; margin-right: 200px;">ACTUALIZAR DATOS</b></font>
 	<br>
@@ -33,7 +33,7 @@
 	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.nombre}" >
 	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.apellido}" >
 	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.email}" >
-	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.id}" >
+	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.id}">
 	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.identificacion}" >
 	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.password}" >
 	<input type=hidden class="resizedTextbox" size="20" maxlength="30"  th:field="${userForm.tipoID}" >
@@ -48,14 +48,14 @@
 	
 	<p><input type="submit" class="redondo" style="font-size:18px; width: 170px; height: 40px;" value="Actualizar"></p>
 	<p style="font-size:120%; color:#8B0D32;"  th:if="${formErrorMessage}" th:text="${formErrorMessage}">Name Error</p>
-	</form>
-	
 
+	</form>
 	<center>
-	<a href="#" th:href="@{/usuario/}+${userForm.id}"><button class="redondo">
+	<a th:href="@{/usuario/}+${id}"><button class="redondo">
 	Regresar
 	</button></a>
 	</center>
+	
 	<address>
 	</font>
 CAFE LA LOMA TIENDA VIRUAL.<br>

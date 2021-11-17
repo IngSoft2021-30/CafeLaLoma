@@ -2,6 +2,7 @@ package com.cafeLaLoma.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,17 @@ public class CarritoServiceImpl implements CarritoService{
 		}
 		// TODO Auto-generated method stub
 		return total;
+	}
+	
+	@Override
+	public Carrito getCarritoById(Long id) throws Exception {
+		return repository.findById(id).orElseThrow(() -> new Exception("El usuario para editar no existe."));
+	}
+	@Override
+	public void deleteCarritoById(Long id) throws Exception {
+		// TODO Auto-generated method stub
+
+		repository.deleteById(id);
 	}
  
 }

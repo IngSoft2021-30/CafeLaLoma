@@ -15,7 +15,7 @@
 </div>
 <div id="navegador">
 <ul>
-<li><a href="#" th:if="${id != 0}" th:href="@{/usuario/}+${id}">PERFIL</a></li>
+<li><a href="#" th:if="${id > 0}" th:href="@{/usuario/}+${id}">PERFIL</a></li>
 <li><a href="#" th:if="${id == null}" th:href="@{/index}">INICIO</a></li>
 <li><a href="#" th:if="${id != null}" th:href="@{/index/}+${id}">INICIO</a></li>
 <li><a href="#" th:if="${id == null}" th:href="@{/empresa}">EMPRESA</a></li>
