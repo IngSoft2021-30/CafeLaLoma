@@ -20,4 +20,8 @@ public class ProductosControl {
 		return "inventario";
 	}
 	
+	@GetMapping("/gestionBD/{id}")
+	public String gestionBD(Model model, @PathVariable(name ="id")String id)throws Exception {
+		return "gestionBD";
+	}	
 }
