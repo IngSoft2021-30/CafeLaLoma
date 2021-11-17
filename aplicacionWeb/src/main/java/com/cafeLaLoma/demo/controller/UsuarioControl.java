@@ -42,7 +42,7 @@ public class UsuarioControl {
 	}
 	
 	@PostMapping("/ingresoadmin")
-	public String autenticarAdmin(@Valid @ModelAttribute("adminForm") Autenticacion admin, BindingResult result, ModelMap model) {
+	public String autenticarAdmin(@Valid @ModelAttribute("adminForm") Autenticacion admin, BindingResult result, ModelMap model, Model model1) {
 		if(result.hasErrors()) {
 			model.addAttribute("autenticarForm", admin);	
 			System.out.print("-----------------------------"+result.getFieldError());
@@ -51,7 +51,8 @@ public class UsuarioControl {
 				Usuario validar = usuarioService.getUserByIdentificacion(admin.getIdentificacion());
 				usuarioService.autenticarAdmin(admin,validar);
 				model.addAttribute("adminForm", validar);	
-				return "perfilAdmin";
+				model1.addAttribute("adminForm", validar);
+				return perfilAdmin(model1,validar.getIdentificacion());
 			} catch (Exception e) {
 				model.addAttribute("formErrorMessage", e.getMessage());
 				model.addAttribute("autenticarForm", admin);
@@ -145,26 +146,19 @@ public class UsuarioControl {
 		model.addAttribute("adminForm", admin);
 		return "perfilAdmin";
 	}
-	@GetMapping("/reporteF")
-	public String reporteF(Model model) {
+	@GetMapping("/reporteF/{id}")
+	public String reporteF(Model model, @PathVariable(name ="id")String id)throws Exception {
 		model.addAttribute("facturaL",facturaService.getAllFacturas());
 		return "reporteFecha";
 	}
-	@GetMapping("/reporteP")
-	public String reporteP(Model model) {
+	@GetMapping("/reporteP/{id}")
+	public String reporteP(Model model, @PathVariable(name ="id")String id)throws Exception {
 		model.addAttribute("ventasL",productoVentaService.getAllProductosventa());
 		return "reporteMasVend";
 	}
-	@GetMapping("/perfilAdm")
-	public String perfilAdm() {
-		return "perfilAdmin";
-	}
-	@GetMapping("/inventario")
-	public String inventario() {
-		return "inventario";
-	}
-	@GetMapping("/gestionBD")
-	public String gestionBD() {
+	
+	@GetMapping("/gestionBD/{id}")
+	public String gestionBD(Model model, @PathVariable(name ="id")String id)throws Exception {
 		return "gestionBD";
 	}
 

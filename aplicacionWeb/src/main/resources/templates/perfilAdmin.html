@@ -22,20 +22,20 @@
 	<font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
 	Selecione una opción para su reporte.<br>
 	REPORTE POR FECHA:<br>
-	<a href="#" th:href="@{/reporteF}"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">
+	<a href="#" th:href="@{/reporteF/}+${id}"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">
 	GENERAR
 	</button></a><br><br>
 	REPORTE VENTAS POR PRODUCTO:
 <br>
-	<a href="#" th:href="@{/reporteP}"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">
+	<a href="#" th:href="@{/reporteP/}+${id}"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">
 	GENERAR
 	</button></a><br><br>
 	ALIMENTAR BASE DE DATOS<br>
-	<a href="#" th:href="@{/gestionBD}"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">
+	<a href="#" th:href="@{/gestionBD/}+${id}"><button class="redondo" style="font-size:22px; width: 170px; height: 40px;">
 	GESTIONAR
 	</button></a><br><br>
 	VER INVENTARIO<br>
-	<a href="#" th:href="@{/inventario}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+	<a href="#" th:href="@{/inventario/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 		VER
 		</button>
 	</button></a><br>
