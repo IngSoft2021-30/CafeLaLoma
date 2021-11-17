@@ -38,7 +38,7 @@ public class ProductosControl {
 		return "gestionBD";
 	}	
 	
-	/*@PostMapping("/gestionBD/{id}")
+	@PostMapping("/gestionBD/{id}")
 	public String actualizaProd(@Valid @ModelAttribute("nombres") Producto user, BindingResult result, ModelMap model,@PathVariable(name ="id")String id) {
 		if(result.hasErrors()) {
 			model.addAttribute("ActProd", user);
@@ -53,7 +53,7 @@ public class ProductosControl {
 			}
 		}		
 		return "noexitosa";
-	}*/
+	}
 	
 	@GetMapping("/GenID/{id}")
 	public String GenID(Model model, @PathVariable(name ="id")String id)throws Exception {
