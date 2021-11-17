@@ -99,18 +99,16 @@ public class UsuarioControl {
 			System.out.print("-----------------------------"+result.getFieldError());
 		}else {
 			try {
-				model.addAttribute("userForm",usuarioService.getUserById(id));
 				usuarioService.updateUser(user);
-				model.addAttribute("roles",roleRepository.findAll());
+				model.addAttribute("ErrorMessage", user.getRoles()+"---"+user.getId());
 				return "perfilUsuario";
 			} catch (Exception e) {
-				model.addAttribute(".......................jjjjjjjjjjjjformErrorMessage", e.getMessage());
+				model.addAttribute("ErrorMessage", e.getMessage());
 				model.addAttribute("userForm", user);
 			}
 		}		
 		model.addAttribute("roles",roleRepository.findAll());
-		System.out.println("______________________RETORNO ACTUALIZAR PERRRFIL------------"+user.getRoles());
-		return "perfilUsuario";
+		return "actualizarPerfil";
 	}
 	
 	@PostMapping("/actualizarPerfilC")
