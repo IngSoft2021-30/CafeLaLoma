@@ -37,16 +37,15 @@ public class CarritoControl {
 	public String borrarItem(@Valid @ModelAttribute("carritoUser") Carrito carrito,BindingResult result, ModelMap model,@PathVariable(name = "id")Long id) throws Exception {
 		if(result.hasErrors()) {
 			model.addAttribute("carritoUser", carrito);	
-			System.out.print("-----------------------------"+result.getFieldError());
+			System.out.print(result.getFieldError());
 		}else {
 			try {
 				carritoService.deleteCarritoById(carrito.getId());
 				return "exitosa";
 			} catch (Exception e) {
-				System.out.print("-----------------------------"+e.getMessage());
+				System.out.print(e.getMessage());
 			}
 		}		
-		System.out.println("______________________RETORNO BORRAR ITEM DE CARRO------------");
 		return "noexitosa";
 	}
 	

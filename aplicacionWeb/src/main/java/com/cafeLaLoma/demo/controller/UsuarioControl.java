@@ -20,6 +20,7 @@ import com.cafeLaLoma.demo.service.UsuarioService;
 
 import dto.Autenticacion;
 import dto.CambiarPassword;
+import dto.ProductMasVend;
 
 @Controller
 public class UsuarioControl {
@@ -153,14 +154,8 @@ public class UsuarioControl {
 	}
 	@GetMapping("/reporteP/{id}")
 	public String reporteP(Model model, @PathVariable(name ="id")String id)throws Exception {
-		model.addAttribute("ventasL",productoVentaService.getAllProductosventa());
+		model.addAttribute("ventasL",productoVentaService.getMasVendidos());
 		return "reporteMasVend";
 	}
-	
-	@GetMapping("/gestionBD/{id}")
-	public String gestionBD(Model model, @PathVariable(name ="id")String id)throws Exception {
-		return "gestionBD";
-	}
-
-	
+		
 }

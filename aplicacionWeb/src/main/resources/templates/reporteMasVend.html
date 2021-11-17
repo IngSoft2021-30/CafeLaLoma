@@ -25,43 +25,25 @@
 		</TR>
 		<TR>
 			<TD>Producto</TD> <TD>Cantidad de unidades</TD>
-			<TD>Ingreso total</TD> <TD>fecha</TD>
+			<TD>Ingreso total</TD> <TD>Valor unitario</TD>
 		</TR>
 		<TR th:each="producto_venta: ${ventasL}">
-			<td th:text="${producto_venta.productos[0].nombre}"></td>
+			<td th:text="${producto_venta.nombre}"></td>
 			<td th:text="${producto_venta.cantidad}"></td>
-			<td th:text="${producto_venta.valorTotal}"></td>
-			<td th:text="${producto_venta.venta_id.fecha}"></td>
-		</TR>
-		<TR>
-			<TD>.........</TD> <TD>#xxxx</TD>
-			<TD>$XX.XXX</TD> <TD>.......</TD>
-		</TR>
-		<TR>
-			<TD>.........</TD> <TD>#xxxx</TD>
-			<TD>$XX.XXX</TD> <TD>.......</TD>
-		</TR>
-		<TR>
-			<TD>.........</TD> <TD>#xxxx</TD>
-			<TD>$XX.XXX</TD> <TD>.......</TD>
-		</TR>
-		<TR>
-			<TD>.........</TD> <TD>#xxxx</TD>
-			<TD>$XX.XXX</TD> <TD>.......</TD>
+			<td th:text="${producto_venta.valTotal}"></td>
+			<td th:text="${producto_venta.valUnitario}"></td>
 		</TR>
 	</TABLE><br><br>
 	<center>
 		<a href="#" th:href="@{/admin/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 		REGRESAR
 		</button></a>
-
-
 <br>
 </font>
 </center>
 <address>
 CAFE LA LOMA TIENDA VIRUAL.<br>
-XXXXX-Colombia<br>
-XXXXXXXX - 3XX-XXX XXXX</address>
+Nariño-Colombia<br>
+318-770 6752</address>
 </body>
 </html>
