@@ -20,12 +20,12 @@
 <font color="000000" SIZE=5><p style="margin-top: 0px; margin-left: 300px; margin-right: 300px;">
 	Actualizar la disponibilidad de productos existentes:<br>
 	<br>
-	<p>	
 	ID del producto: <select name="select" style="height:26px; font-size:16px;">
-	  	<option value="ps" th:each="id : ${ids}" th:text="${id}">01</option>
+	  	<option th:with="idSend=@{0}" th:each="id : ${ids}" th:text="${id}">
+	  	</option>
 	</select><br>
 	Nombre del producto:<select name="select" style="height:26px; font-size:16px;">
-	  	<option value="ps" th:each="nomb : ${nombres}" th:text="${nomb}" ></option>
+	  	<option value="ps" th:each="nomb : ${nombres}" th:text="${nomb}"></option>
 	</select><br>
 	Tamaño:<select name="select" style="height:26px; font-size:16px;">
 	  <option value="ps">350</option>
@@ -36,17 +36,18 @@
 	  <option value="CC" selected>30</option>
 	  <option value="value3">50</option>
 	</select><br>
-		<p><input type="submit" class="redondo" style="font-size:18px; width: 170px; height: 40px;" value="Actualizar"></p>	
-
+	<a th:href="@{/gestionBD/}+${idSend}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+	ACTUALIZAR
+	</button></a>
 	<p>Ingresar un nuevo producto:<br>
 	<br>
 	<a href="#" th:href="@{/GenID/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 60px;">
 	GENERAR ID
 	</button></a><input type="text" class="resizedTextbox" size="20" maxlength="30" th:if="${consecutivo != null }" th:value="${consecutivo}" name="nombres"/><br>
-	Nombre del producto: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Nombre producto" name="nombres"><br>
-	Tamaño: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Tamaño" name="nombres"><br>
-	Cantidades disponibles: <input type="text" class="resizedTextbox" size="20" maxlength="30" value="Disponibilidad" name="nombres"><br>
-	<a href="reporteMasVend.html"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
+	Nombre del producto: <input type="text" class="resizedTextbox" size="20" maxlength="30" name="nombres"><br>
+	Tamaño: <input type="text" class="resizedTextbox" size="20" maxlength="30" name="nombres"><br>
+	Cantidades disponibles: <input type="text" class="resizedTextbox" size="20" maxlength="30" name="nombres"><br>
+	<a th:href="@{/admin/}+${id}"><button class="redondo" style="font-size:18px; width: 170px; height: 40px;">
 	AGREGAR
 	</button></a><br><br>
 	INVENTARIO<br>
