@@ -61,5 +61,6 @@ public class ProductosControl {
 		model.addAttribute("ids", productoService.getProductIds());
 		model.addAttribute("consecutivo", productoService.generarId());
 		return "gestionBD";
-	}	
+	}
+	//Test No.1
 }
